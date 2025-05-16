@@ -2,7 +2,7 @@ nav {
     display: flex;
     overflow-x: scroll;
     scrollbar-width: thin;
-    scrollbar-color: #E52572 #120638;
+    scrollbar-color: #50FEFE #120638;
 
     justify-content: space-between;
     gap: 12px;
@@ -32,4 +32,8 @@ nav div p {
     font-size: 14px;
     white-space: nowrap;
     color: white;
+}
+
+div:last-child p {
+    border-right: none;
 }

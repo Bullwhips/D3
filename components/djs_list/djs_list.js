@@ -20,4 +20,7 @@ function renderDjList(container) {
         nav.appendChild(div);
     }
     container.appendChild(nav);
+
+    nav.querySelectorAll(div)
 }
+
