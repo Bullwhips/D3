@@ -12,7 +12,7 @@ renderDjList(wrapper);
 renderBodyContainer(wrapper);
 const left = document.querySelector("#left")
 renderGraph1(left)
-renderDjStats(wrapper);
+renderDjStats(document.getElementById("right"));
 
     
 }

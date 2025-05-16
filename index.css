@@ -1,4 +1,6 @@
-box-sizing: border-box;
+body {
+    box-sizing: border-box;
+}
 
 font-face {
     font-family: "Beyonders";

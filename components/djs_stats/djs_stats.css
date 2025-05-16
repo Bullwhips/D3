@@ -1,4 +1,22 @@
 #djStatsContainer {
     border-top: 10px solid #E52572;
     border-radius: 4px 4px 0px 0px;
+
+    width: 295px;
+    height: 214px;
+    display: flex;
+    flex-direction: column;
+}
+
+.djNameContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.djNameContainer p {
+    flex-grow: 1;
+    color: white;
+    margin: 0;
+    text-align: center;
 }
