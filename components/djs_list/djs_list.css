@@ -1,0 +1,26 @@
+nav {
+    display: flex;
+    overflow-x: scroll;
+
+    justify-content: space-between;
+    gap: 12px;
+}
+
+nav div {
+   flex-grow: 1;
+   flex-basis: 0;
+   height: 50px;
+   gap: 12px;
+}
+
+nav div:hover {
+    cursor: pointer;
+}
+
+nav div p {
+    margin: 0;
+    font-family: "Beyonders";
+    text-align: left;
+    font-size: 14px;
+    white-space: nowrap;
+}
