@@ -13,6 +13,7 @@ nav div {
    flex-basis: 0;
    height: 50px;
    gap: 12px;
+
 }
 
 nav div:hover {
@@ -20,6 +21,8 @@ nav div:hover {
 }
 
 nav div p {
+    padding-right: 10px;
+    border-right: 1px solid white;
     margin: 0;
     font-family: "Beyonders";
     text-align: left;
