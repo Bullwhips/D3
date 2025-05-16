@@ -1,0 +1,10 @@
+header{
+    height: 10%;
+}
+
+#imgDiv{
+    height: 100%;
+    background-image: url("../../assets/images/Raverz_logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
