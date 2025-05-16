@@ -7,6 +7,9 @@ function startApp(wrapper) {
 renderHeader(wrapper);
 renderDjList(wrapper);
 renderGraph1(wrapper)
+renderBodyContainer(wrapper);
+renderDjStats(wrapper);
+
     
 }
 

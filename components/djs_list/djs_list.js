@@ -21,6 +21,11 @@ function renderDjList(container) {
     }
     container.appendChild(nav);
 
-    nav.querySelectorAll("div");
+    let divs = nav.querySelectorAll("div");
+    console.log(divs);
+    divs.forEach(div => div.addEventListener("click", chosenDj));
 }
 
+function chosenDj (event) {
+    console.log("clicked");
+}
