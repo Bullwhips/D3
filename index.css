@@ -7,3 +7,18 @@ font-face {
     font-family: "Beyonders-Italic";
     src: url(./media/fonts/BeyondersItalic-jEpgj.ttf);
 }
+body {
+    margin: 0;
+    height: 100vh;
+}
+
+#wrapper {
+    height: 100%;
+    width: 100%;
+  background: linear-gradient(
+    to bottom,
+    #120638 0%,
+    #120638 50%,
+    #33119E 100%
+  );
+}
