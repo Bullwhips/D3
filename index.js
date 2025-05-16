@@ -6,7 +6,7 @@ function startApp(wrapper) {
 // renderHeader(wrapper)
 renderHeader(wrapper);
 renderDjList(wrapper);
-
+renderGraph1(wrapper)
     
 }
 
