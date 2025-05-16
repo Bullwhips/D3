@@ -1,5 +1,9 @@
-function renderGraph1(wrapper) {
 
+
+function renderGraph1(wrapper) {
+let graphContainer = document.createElement("div")
+graphContainer.id = "graphContainer"
+wrapper.append(graphContainer)
       const wSvg = 925,
         hSvg = 638,
         wPadding = 20,
@@ -9,7 +13,7 @@ function renderGraph1(wrapper) {
         hViz = hSvg - hPaddingBottom - hPaddingTop
         // antal = dataset.length
 
-        let svg = d3.select(wrapper)
+        let svg = d3.select(graphContainer)
           .append("svg")
           .attr("width", wSvg)
           .attr("height", hSvg)
