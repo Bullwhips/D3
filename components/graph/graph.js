@@ -1,7 +1,7 @@
 function renderGraph1(wrapper) {
 
-      const wSvg = 800,
-        hSvg = 600,
+      const wSvg = 925,
+        hSvg = 638,
         wPadding = 20,
         hPaddingBottom = 30,
         hPaddingTop = 20,
