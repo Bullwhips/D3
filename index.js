@@ -7,9 +7,10 @@ function startApp(wrapper) {
 renderHeader(wrapper);
 renderDjList(wrapper);
 renderBodyContainer(wrapper);
-renderDjStats(wrapper);
+renderDjStats(document.getElementById("right"), testData);
 
     
 }
 
+let testData = [1, 2, 3];
 startApp(wrapper)
