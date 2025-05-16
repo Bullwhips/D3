@@ -1,3 +1,5 @@
+box-sizing: border-box;
+
 font-face {
     font-family: "Beyonders";
     src: url(./media/fonts/Beyonders-6YoJM.ttf);
