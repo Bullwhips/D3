@@ -4,6 +4,8 @@ nav {
 
     justify-content: space-between;
     gap: 12px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 nav div {
@@ -23,4 +25,5 @@ nav div p {
     text-align: left;
     font-size: 14px;
     white-space: nowrap;
+    color: white;
 }
