@@ -2,9 +2,12 @@ function renderDjStats (container, data) {
     const djStatsContainer = document.createElement("div");
     djStatsContainer.setAttribute("id", "djStatsContainer");
 
-    let djName = document.createElement("div");
-    djName.classList.add("djName");
-    djStatsContainer.appendChild(djName);
+    let djNameContainer = document.createElement("div");
+    djNameContainer.classList.add("djNameContainer");
 
-    container.appendChild(djStatsContainer);
+    let left = document.createElement("div");
+    let right = document.createElement("div");
+    // djStatsContainer.appendChild(djName);
+
+    // container.appendChild(djStatsContainer);
 }
