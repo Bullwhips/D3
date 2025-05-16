@@ -21,6 +21,6 @@ function renderDjList(container) {
     }
     container.appendChild(nav);
 
-    nav.querySelectorAll(div)
+    nav.querySelectorAll("div");
 }
 
