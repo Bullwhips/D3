@@ -10,5 +10,5 @@ function renderDjList(container) {
         div.appendChild(p);
         nav.appendChild(div);
     }
-    container.appendChild("nav");
+    container.appendChild(nav);
 }
