@@ -1,11 +1,14 @@
 nav {
     display: flex;
     overflow-x: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #E52572 #120638;
 
     justify-content: space-between;
     gap: 12px;
     margin-left: 20px;
     margin-right: 20px;
+
 }
 
 nav div {
