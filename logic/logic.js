@@ -12,3 +12,8 @@ const years =
     "2024",
     
 ]
+
+function updateGraph(year) {
+  currentYear = year;
+  drawVisibleDJs();
+}

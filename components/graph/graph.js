@@ -1,16 +1,26 @@
 
+let selectedDJs = new Set(); // stores DJ ids
+let currentYear = 2015; // tracks the current year
+let djDataset = []; // move this from inside renderGraph1 so it's accessible
+let xScale, yScale; // so we can use them in other functions
 
-function renderGraph1(wrapper) {
+function renderGraph1(wrapper, selectedYear = 2015) {
+let old = document.getElementById("graphContainer")
+if (old) {
+  wrapper.removeChild(old)
+}
 let graphContainer = document.createElement("div")
 graphContainer.id = "graphContainer"
 wrapper.append(graphContainer)
+
       const wSvg = 925,
         hSvg = 638,
-        wPadding = 20,
+        wPadding = 40,
         hPaddingBottom = 30,
         hPaddingTop = 20,
         wViz = wSvg - 2 * wPadding,
         hViz = hSvg - hPaddingBottom - hPaddingTop
+        
         // antal = dataset.length
 
         let svg = d3.select(graphContainer)
@@ -22,4 +32,119 @@ wrapper.append(graphContainer)
           .style("border-top", "10px solid #E52572")
           .style("border-radius", "4px")
           .style("background-color", "#110f34")
+
+    
+
+for (let dj of DJs) { 
+  const djID = dj.id; 
+  const dataset = { 
+    id: djID, 
+    name: dj.name, 
+    attendance: {}, 
+  };
+
+  for (let monthIndex = 0; monthIndex < 120; monthIndex++) { 
+    const year = 2015 + Math.floor(monthIndex / 12);
+    const month = monthIndex % 12;
+
+    let djGigs = Gigs.filter(x => x.djID == djID)
+      .filter(x => { 
+        let _date = new Date(x.date); 
+        let _year = _date.getFullYear(); 
+        let _month = _date.getMonth(); 
+        return _year === year && _month === month; 
+      });
+
+          
+    let totalAttendance = djGigs.reduce((sum, gig) => sum + (gig.attendance ), 0);
+
+    let point = { month: month, totalAttendance: totalAttendance }; 
+
+
+    if (!dataset.attendance[year]) {
+      dataset.attendance[year] = [];
+    }
+
+
+     dataset.attendance[year].push(point); 
+  }
+
+ 
+
+  djDataset.push(dataset); 
+  
+  }
+  let maxAttendance = 5000
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              
+  // x-Skala
+ xScale = d3.scaleBand(months, [wPadding, wPadding + wViz]);
+
+// y-Skala
+ yScale = d3.scaleLinear([0, maxAttendance], [hPaddingBottom + hViz, hPaddingBottom]);
+
+// Skapa x-axel i sitt eget <g>
+let xAxisFunction = d3.axisBottom(xScale);
+let xG = svg.append("g")
+          .call(xAxisFunction)
+          .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
+          .style("color", "white")
+;          
+
+// Skapa y-axel i sitt eget <g>
+let yAxisFunction = d3.axisLeft(yScale);
+let yG = svg.append("g")
+          .call(yAxisFunction)
+          .attr("transform", `translate(${wPadding}, 0)`)
+          .style("color", "white")
+;  
+
 }
+
+function chosenDj(event) {
+  const div = event.currentTarget;
+  const djID = parseInt(div.getAttribute("data-id"));
+
+  if (selectedDJs.has(djID)) {
+    selectedDJs.delete(djID);
+  } else {
+    selectedDJs.add(djID);
+  }
+
+  drawVisibleDJs();
+}
+
+
+function drawVisibleDJs() {
+  const svg = d3.select("#graphContainer").select("svg");
+  svg.selectAll("path.dj-line").remove(); // clear old lines
+
+   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const dMaker = d3.line()
+    .x(d => xScale(months[d.month]) + xScale.bandwidth() / 2)
+    .y(d => yScale(d.totalAttendance));
+
+  for (let djID of selectedDJs) {
+    const dj = djDataset.find(d => d.id === djID);
+    const yearData = dj.attendance[currentYear];
+
+    svg.append("path")
+      .datum(yearData)
+      .attr("class", "dj-line")
+      .attr("id", `line_${djID}_${currentYear}`)
+      .attr("stroke", getColorForDJ(djID))
+      .attr("stroke-width", 3)
+      .attr("fill", "none")
+      .attr("d", dMaker);
+  }
+}
+
+function getColorForDJ(id) {
+const entry = djColorArray.find(dj => dj.id === id);
+return entry.color
+}
+

@@ -1,6 +1,6 @@
 function renderYears(wrapper) {
     
-    let yearsContainer = document.createElement(div)
+    let yearsContainer = document.createElement("div")
     yearsContainer.id = "yearsContainer"
     wrapper.append(yearsContainer)
 
@@ -9,7 +9,7 @@ function renderYears(wrapper) {
     prevArrow.textContent = "<"
     yearsContainer.append(prevArrow)
 
-    let yearDiv = document.createElement(div)
+    let yearDiv = document.createElement("div")
     yearDiv.id = "yearDiv"
     yearDiv.textContent = years[0]
     yearsContainer.append(yearDiv)
@@ -19,5 +19,25 @@ function renderYears(wrapper) {
     nextArrow.id = "nextArrow"
     nextArrow.textContent = ">"
     yearsContainer.append(nextArrow)
+
+        let currentIndex = 0;
+
+    function updateYear() {
+        yearDiv.textContent = years[currentIndex];
+        updateGraph(years[currentIndex]);
+    }
+
+    prevArrow.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + years.length) % years.length;
+        updateYear();
+    });
+
+    nextArrow.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % years.length;
+        updateYear();
+    });
+
+    // Initial display
+    updateYear();
 
 }

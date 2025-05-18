@@ -13,7 +13,8 @@ function renderDjList(container) {
         let div = document.createElement("div");
         let p = document.createElement("p");
 
-        div.setAttribute("id", dj.id);
+        div.setAttribute("data-id", dj.id);
+        div.setAttribute("data-name", dj.name);
         p.textContent = dj.name;
 
         div.appendChild(p);
@@ -26,6 +27,3 @@ function renderDjList(container) {
     divs.forEach(div => div.addEventListener("click", chosenDj));
 }
 
-function chosenDj (event) {
-    console.log("clicked");
-}

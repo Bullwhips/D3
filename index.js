@@ -11,9 +11,10 @@ renderHeader(wrapper);
 renderDjList(wrapper);
 renderBodyContainer(wrapper);
 const left = document.querySelector("#left")
+const right = document.querySelector("#right")
 renderGraph1(left)
-renderDjStats(document.getElementById("right"));
-
+renderDjStats(right);
+renderYears(right)
     
 }
 
