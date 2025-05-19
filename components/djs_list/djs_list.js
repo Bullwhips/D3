@@ -12,12 +12,16 @@ function renderDjList(container) {
     for (let dj of DJs) {
         let div = document.createElement("div");
         let p = document.createElement("p");
+        let bottomBorder = document.createElement("div");
 
         div.setAttribute("data-id", dj.id);
         div.setAttribute("data-name", dj.name);
+
+        bottomBorder.classList.add("chosenDjBorder");
         p.textContent = dj.name;
 
         div.appendChild(p);
+        p.appendChild(bottomBorder);
         nav.appendChild(div);
     }
     container.appendChild(nav);

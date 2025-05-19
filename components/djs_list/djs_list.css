@@ -6,6 +6,7 @@ nav {
 
     justify-content: space-between;
     gap: 12px;
+
     margin-left: 20px;
     margin-right: 20px;
 
@@ -23,6 +24,10 @@ nav div:hover {
     cursor: pointer;
 }
 
+.chosenDjBorder {
+    display: fit-content;
+    height: 0px;
+}
 nav div p {
     padding-right: 10px;
     border-right: 1px solid white;

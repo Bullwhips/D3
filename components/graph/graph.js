@@ -107,10 +107,22 @@ function chosenDj(event) {
   const div = event.currentTarget;
   const djID = parseInt(div.getAttribute("data-id"));
 
+  if (div.id == "allDjs") {
+    drawAllDjs();
+    return;
+  }
+
   if (selectedDJs.has(djID)) {
     selectedDJs.delete(djID);
+    console.log(div);
+    div.querySelector(".chosenDjBorder").style.borderBottom = "none";
   } else {
     selectedDJs.add(djID);
+    for (let djColor of djColorArray) {
+      if (djColor.id === djID) {
+        div.querySelector(".chosenDjBorder").style.borderBottom = `3px solid ${djColor.color}`;
+      }
+    }
   }
 
   drawVisibleDJs();
@@ -143,6 +155,30 @@ function drawVisibleDJs() {
   }
 }
 
+function drawAllDjs() {
+  const svg = d3.select("#graphContainer").select("svg");
+  svg.selectAll("path.dj-line").remove();
+
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  const dMaker = d3.line()
+    .x(d => xScale(months[d.month]) + xScale.bandwidth() / 2)
+    .y(d => yScale(d.totalAttendance));
+
+  let paths = svg.selectAll("path.dj-line")
+                  .data(djDataset)
+                  .enter()
+                  .append("path")
+                  .attr("class", "dj-line")
+                  .attr("id", (d) => `line_${d.id}_${currentYear}`)
+                  .attr("stroke", (d) => getColorForDJ(d.id))
+                  .attr("stroke-width", 3)
+                  .attr("fill", "none")
+                  .attr("d", (d) => dMaker(d.attendance[currentYear]));
+
+}
+  
 function getColorForDJ(id) {
 const entry = djColorArray.find(dj => dj.id === id);
 return entry.color
