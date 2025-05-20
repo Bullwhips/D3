@@ -1,8 +1,8 @@
 
 let selectedDJs = new Set(); // stores DJ ids
 let currentYear = 2015; // tracks the current year
-let djDataset = []; // move this from inside renderGraph1 so it's accessible
-let xScale, yScale; // so we can use them in other functions
+let djDataset = []; 
+let xScale, yScale; // global x and y scale
 
 function renderGraph1(wrapper, selectedYear = 2015) {
 let old = document.getElementById("graphContainer")
