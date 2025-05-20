@@ -17,27 +17,30 @@ function renderGraphList(right) {
     graphListAttendancePerMonth.textContent = "ATTENDACE PER MONTH"
     graphSelectionContainer.append(graphListAttendancePerMonth)
 
-    let pinkDiv2 = document.createElement("div")
-    pinkDiv2.id = "pinkDiv2"
-    graphSelectionContainer.append(pinkDiv2)
+    let pinkDiv1 = document.createElement("div")
+    pinkDiv1.id = "pinkDiv1"
+    pinkDiv1.classList.add("pinkDiv")
+    graphSelectionContainer.append(pinkDiv1)
 
     let graphListAttendancePopulation = document.createElement("div")
     graphListAttendancePopulation.id = "graphListAttendancePopulation"
     graphListAttendancePopulation.textContent = "ATTENDANCE/POPULATION"
     graphSelectionContainer.append(graphListAttendancePopulation)
 
-      let pinkDiv3 = document.createElement("div")
-    pinkDiv3.id = "pinkDiv3"
-    graphSelectionContainer.append(pinkDiv3)
+    let pinkDiv2 = document.createElement("div")
+    pinkDiv2.id = "pinkDiv2"
+    pinkDiv2.classList.add("pinkDiv")
+    graphSelectionContainer.append(pinkDiv2)
 
     let graphListEarningsPerMonth = document.createElement("div")
     graphListEarningsPerMonth.id = "graphListEarningsPerMonth"
     graphListEarningsPerMonth.textContent = "EARNINGS PER MONTH"
     graphSelectionContainer.append(graphListEarningsPerMonth)
 
-      let pinkDiv1 = document.createElement("div")
-    pinkDiv1.id = "pinkDiv1"
-    graphSelectionContainer.append(pinkDiv1)
+    let pinkDiv3 = document.createElement("div")
+    pinkDiv3.id = "pinkDiv3"
+    pinkDiv3.classList.add("pinkDiv")
+    graphSelectionContainer.append(pinkDiv3)
     
     let graphListFullDataGraph = document.createElement("div")
     graphListFullDataGraph.id = "graphListFullDataGraph"
