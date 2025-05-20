@@ -12,7 +12,7 @@ renderDjList(wrapper);
 renderBodyContainer(wrapper);
 const left = document.querySelector("#left")
 const right = document.querySelector("#right")
-renderGraph1(left)
+renderAttendanceGraph(left)
 renderDjStats(right);
 renderYears(right)
     
