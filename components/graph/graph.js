@@ -108,8 +108,16 @@ function chosenDj(event) {
   const djID = parseInt(div.getAttribute("data-id"));
 
   if (div.id == "allDjs") {
-    drawAllDjs();
-    return;
+    if (div.classList.contains("active")) {
+      div.classList.remove("active");
+      d3.select("svg")
+        .selectAll("path.dj-line").remove();
+      return;
+    } else {
+      div.classList.add("active");
+      drawAllDjs();
+      return;
+    }
   }
 
   if (selectedDJs.has(djID)) {
