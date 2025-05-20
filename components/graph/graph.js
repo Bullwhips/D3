@@ -81,17 +81,17 @@ function renderAttendanceGraph(wrapper, selectedYear = 2015)
 
   // Skapa x-axel i sitt eget <g>
   let xAxisFunction = d3.axisBottom(xScale);
-  let xG = svg.append("g")
-              .call(xAxisFunction)
-              .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
-              .style("color", "white");          
+  svg.append("g")
+     .call(xAxisFunction)
+     .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
+     .style("color", "white");          
 
   // Skapa y-axel i sitt eget <g>
   let yAxisFunction = d3.axisLeft(yScale);
-  let yG = svg.append("g")
-              .call(yAxisFunction)
-              .attr("transform", `translate(${wPadding}, 0)`)
-              .style("color", "white");  
+  svg.append("g")
+     .call(yAxisFunction)
+     .attr("transform", `translate(${wPadding}, 0)`)
+     .style("color", "white");  
 }
 
 function chosenDj(event) {

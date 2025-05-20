@@ -14,6 +14,7 @@ const left = document.querySelector("#left")
 const right = document.querySelector("#right")
 renderAttendanceGraph(left)
 renderDjStats(right);
+renderGraphList(right)
 renderYears(right)
     
 }
