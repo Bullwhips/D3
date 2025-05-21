@@ -129,7 +129,8 @@ function chosenDj(event) {
       }
     }
   }
-
+  // returnSelectedDjs();
+  addDjStatlist();
   drawVisibleDJs();
 }
 

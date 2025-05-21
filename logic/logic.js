@@ -17,3 +17,21 @@ function updateGraph(year) {
   currentYear = year;
   drawVisibleDJs();
 }
+
+function returnSelectedDjs () {
+  let allSelectedDjs = [];
+
+  for (let selected of selectedDJs) {
+    for (let dj of djDataset) {
+      if (dj.id === selected) {
+        allSelectedDjs.push(dj);
+      }
+    }
+  }
+  
+  return allSelectedDjs;
+}
+
+function calculateHighestAttendance(dj, year) {
+  //should calculate the given djs highest attendance based on the current year
+}
