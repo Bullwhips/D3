@@ -22,10 +22,10 @@ function renderGraphList(right) {
     pinkDiv1.classList.add("pinkDiv")
     graphSelectionContainer.append(pinkDiv1)
 
-    let graphListAttendancePopulation = document.createElement("div")
-    graphListAttendancePopulation.id = "graphListAttendancePopulation"
-    graphListAttendancePopulation.textContent = "ATTENDANCE/POPULATION"
-    graphSelectionContainer.append(graphListAttendancePopulation)
+    let graphListAttendanceRate = document.createElement("div")
+    graphListAttendanceRate.id = "graphListAttendanceRate"
+    graphListAttendanceRate.textContent = "ATTENDANCE RATE"
+    graphSelectionContainer.append(graphListAttendanceRate)
 
     let pinkDiv2 = document.createElement("div")
     pinkDiv2.id = "pinkDiv2"
@@ -47,4 +47,32 @@ function renderGraphList(right) {
     graphListFullDataGraph.textContent = "FULL DATA GRAPH"
     graphSelectionContainer.append(graphListFullDataGraph)
 
+
+
+    const left = document.querySelector("#left")
+
+
+graphListAttendancePerMonth.addEventListener("click", () => {
+    currentGraph = "AttendancePerMonth"
+    selectedDJs.clear(); 
+    djDataset = []; 
+    clearAllDjBorders();
+    clearGraphSelectionColors(); 
+    graphListAttendancePerMonth.classList.add("selectedGraph");
+    renderAttendancePerMonthGraph(left)
+})
+
+graphListAttendanceRate.addEventListener("click", () => {
+    currentGraph = "AttendanceRate"
+    selectedDJs.clear(); 
+    djDataset = [];
+    clearAllDjBorders();
+    clearGraphSelectionColors(); 
+    graphListAttendanceRate.classList.add("selectedGraph");
+    renderAttendanceRateGraph(left)
+})
+
+ 
 }
+
+
