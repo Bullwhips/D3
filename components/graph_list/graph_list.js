@@ -62,6 +62,7 @@ graphListAttendancePerMonth.addEventListener("click", () => {
     graphListAttendancePerMonth.classList.add("selectedGraph");
     renderAttendancePerMonthGraph(left)
     changeStatText(currentGraph);
+    addDjStatlist();
 })
 
 graphListAttendanceRate.addEventListener("click", () => {
@@ -73,6 +74,7 @@ graphListAttendanceRate.addEventListener("click", () => {
     graphListAttendanceRate.classList.add("selectedGraph");
     renderAttendanceRateGraph(left)
     changeStatText(currentGraph);
+    addDjStatlist();
 })
 
  

@@ -20,7 +20,11 @@ let xScale, yScale; // global x and y scale
 
 function updateGraph(year) {
   currentYear = year;
+  if (currentDj) {
+    updateStatNumbers(currentGraph);
+  }
   // drawVisibleDJs();
+  drawDJsAttendancePerMonth();
 }
 
 function returnSelectedDjs () {
@@ -58,6 +62,74 @@ function calculateHighestAttendance(dj, year) {
   // }
 }
 
+function calculateBestMonth(dj, year) {
+  let bestMonthNumber = 0;
+  let highestAttendance = 0;
+
+  console.log(dj);
+  let allYearAttendance = dj.attendance[year];
+  for (let yearAttendance of allYearAttendance) {
+    if (yearAttendance.totalAttendance > highestAttendance) {
+      highestAttendance = yearAttendance.totalAttendance;
+      bestMonthNumber = yearAttendance.month;
+    }
+  }
+
+  let bestMonth = months[bestMonthNumber];
+  return bestMonth;
+}
+
+function calculateBestMonthAttendanceRate(dj, year) {
+  let bestMonthNumber = 0;
+  let highestRate = 0;
+
+  let allYearRate = dj.attendance[year];
+  for (let rate of allYearRate) {
+    if (rate.attendanceRatePercent > highestRate) {
+      highestRate = rate.attendanceRatePercent;
+      bestMonthNumber = rate.month;
+    }
+  }
+
+  let bestMonth = months[bestMonthNumber];
+  return bestMonth;
+}
+
+function calculateAverageAttendance(dj, year) {
+  let totalAttendance = 0;
+  const allMonths = months.length;
+
+  allYearAttendance = dj.attendance[year];
+  allYearAttendance.forEach(att => totalAttendance = totalAttendance + att.totalAttendance);
+
+  //divide by allMonths even if some months are 0?
+  let averageAttendance = totalAttendance / allMonths;
+  return Math.floor(averageAttendance);
+
+}
+
+function calculateHighestAverage(dj, year) {
+  let highestAverage = 0;
+
+  let allYearAverage = dj.attendance[year];
+  for (let avg of allYearAverage) {
+    if (avg.attendanceRatePercent > highestAverage) highestAverage = avg.attendanceRatePercent;
+  }
+
+  return highestAverage;
+}
+
+function calculateAverageAttendanceRate(dj, year) {
+  let avg = 0;
+  let allMonths = months.length;
+
+  let yearAverage = dj.attendance[year];
+  yearAverage.forEach(n => avg = avg + n.attendanceRatePercent);
+
+  let averageAttendanceRate = avg / allMonths;
+  return averageAttendanceRate.toFixed(2);
+}
+
 function chosenDj(event) {
   const div = event.currentTarget;
   const djID = parseInt(div.getAttribute("data-id"));
@@ -90,6 +162,7 @@ if (currentGraph === "AttendanceRate") {
 
 
   if (currentGraph === "AttendanceRate") {
+    console.log("hej");
     // SINGLE SELECTION MODE
     selectedDJs.clear();
     selectedDJs.add(djID);
@@ -118,6 +191,7 @@ if (currentGraph === "AttendanceRate") {
       drawDJsAttendancePerMonth();
       break;
     case "AttendanceRate":
+      addDjStatlist();
       drawDJsAttendanceRate();
       break;
   }

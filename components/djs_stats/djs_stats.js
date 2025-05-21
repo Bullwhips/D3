@@ -21,15 +21,15 @@ function renderDjStats (container) {
     statsContainer.innerHTML = `
     <div class="stat">
         <p id="firstStat"></p>
-        <p id="firstStatNumber">100</p>
+        <p id="firstStatNumber"></p>
     </div>
     <div class="stat">
         <p id="secondStat"></p>
-        <p id="secondStatNumber">100</p>
+        <p id="secondStatNumber"></p>
     </div>
     <div class="stat">
         <p id="thirdStat"></p>
-        <p id="thirdStatNumber">100</p>
+        <p id="thirdStatNumber"></p>
     </div>
     `
 
@@ -58,6 +58,10 @@ function addDjStatlist(allDjs) {
         djName.removeAttribute("id");
         removeDjIdClass(djName);
         currentDj = null;
+
+        document.getElementById("firstStatNumber").textContent = "0";
+        document.getElementById("secondStatNumber").textContent = "";
+        document.getElementById("thirdStatNumber").textContent = "0";
     } else if (djs.length === 1) {       
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
@@ -66,7 +70,8 @@ function addDjStatlist(allDjs) {
         djName.classList.add(`djId:${djs[0].id}`);
         currentDj = djs[0];
 
-        calculateHighestAttendance(djs[0], currentYear);
+        updateStatNumbers(currentGraph);
+        // calculateHighestAttendance(djs[0], currentYear);
     }   
 }
 
@@ -97,13 +102,18 @@ function updateStatNumbers(graph) {
     let firstStatNumber = document.getElementById("firstStatNumber");
     let secondStatNumber = document.getElementById("secondStatNumber");
     let thirdStatNumber = document.getElementById("thirdStatNumber");
-    
+
     switch (graph) {
         case "AttendancePerMonth":
-
+            firstStatNumber.textContent = calculateHighestAttendance(currentDj, currentYear);
+            secondStatNumber.textContent = calculateBestMonth(currentDj, currentYear);
+            thirdStatNumber.textContent = calculateAverageAttendance(currentDj, currentYear);
             break;
         
         case "AttendanceRate":
+            firstStatNumber.textContent = calculateHighestAverage(currentDj, currentYear) + "%";
+            secondStatNumber.textContent = calculateBestMonthAttendanceRate(currentDj, currentYear);
+            thirdStatNumber.textContent  = calculateAverageAttendanceRate(currentDj, currentYear) + "%";
             break;
 
     }
@@ -128,6 +138,7 @@ function scrollLeftDj(event) {
             
             removeDjIdClass(djNameElement);
             djNameElement.classList.add(`djId:${djs[currentDjIndex].id}`);
+            updateStatNumbers(currentGraph);
 
 
         }
@@ -151,6 +162,7 @@ function scrollRightDj(event) {
 
             removeDjIdClass(djNameElement);
             djNameElement.classList.add(`djId:${djs[currentDjIndex].id}`);
+            updateStatNumbers(currentGraph);
         }
     }
     //när man klickar ska det gå till nästa dj i djs arrayen
