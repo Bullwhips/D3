@@ -10,7 +10,7 @@ function renderDjStats (container) {
 
     djNameContainer.innerHTML = `
     <p id="leftArrow"><</p>
-    <p class="djStatsName">DJ Name</p>
+    <p class="djStatsName"></p>
     <p id="rightArrow">></p>
     `;
     // djStatsContainer.appendChild(djName);
@@ -43,9 +43,10 @@ let djIndex = 0;
 let currentDj;
 
 function addDjStatlist(allDjs) {
-    console.log("hej");
+    console.log("nu borde texten för den valda dj:n försvinna?");
     let djName = document.querySelector(".djStatsName");
     let djs = returnSelectedDjs();
+    console.log(djs);
 
     if (allDjs) {
         djName.textContent = djs[0].name;
@@ -62,7 +63,8 @@ function addDjStatlist(allDjs) {
         document.getElementById("firstStatNumber").textContent = "0";
         document.getElementById("secondStatNumber").textContent = "";
         document.getElementById("thirdStatNumber").textContent = "0";
-    } else if (djs.length === 1) {       
+    } else if (djs.length === 1) {    
+        console.log(djs[0]);   
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
 
@@ -72,7 +74,9 @@ function addDjStatlist(allDjs) {
 
         updateStatNumbers(currentGraph);
         // calculateHighestAttendance(djs[0], currentYear);
-    }   
+    } else if (djs.length > 1) {
+
+    }  
 }
 
 function changeStatText(graph) {
@@ -174,5 +178,20 @@ function removeDjIdClass(dj) {
         if (djClass.startsWith("djId:")) {
             dj.classList.remove(djClass);
         }
+    }
+}
+
+function removeDj() {
+    let djs = returnSelectedDjs(); 
+    let djNameElement = document.querySelector(".djStatsName");
+
+    if (!selectedDJs.has(currentDj.id)) {
+        removeDjIdClass(djNameElement);
+        
+        currentDj = djs[0];
+        djNameElement.textContent = djs[0].name;
+
+        updateStatNumbers(currentGraph);
+        djNameElement.classList.add(`djId:${currentDj.id}`);
     }
 }

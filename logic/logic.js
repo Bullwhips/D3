@@ -170,6 +170,9 @@ if (currentGraph === "AttendanceRate") {
     // MULTI-SELECTION MODE
     if (selectedDJs.has(djID)) {
       selectedDJs.delete(djID);
+      if (selectedDJs.size > 0) {
+        removeDj();
+      }
     } else {
       selectedDJs.add(djID);
     }

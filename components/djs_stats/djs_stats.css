@@ -50,3 +50,8 @@
 #thirdStatNumber {
     color: #E52572;
 }
+
+#rightArrow,
+#leftArrow {
+    cursor: pointer;
+}

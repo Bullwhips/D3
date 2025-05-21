@@ -29,8 +29,9 @@ switch (currentGraph) {
     break;
 }
 renderDjStats(right);
-renderGraphList(right)
-renderYears(right)
+renderGraphList(right);
+renderYears(right);
+changeStatText(currentGraph);
     
 }
 
