@@ -133,13 +133,9 @@ function drawDJsAttendanceRate()
       .enter()
       .append("rect")
       .attr("class", `dj-bar dj-bar-${djID}`)
-      .attr("x", d => {
-       const monthLabel = months[d.month];
-       const x = xScale(monthLabel);
-        return x !== undefined ? x + barWidth * index : wPadding;
-       })
+      .attr("x", d => xScale(months[d.month]))
       .attr("y", d => yScale(d.attendanceRatePercent))
-      .attr("width", barWidth) // spacing between bars
+      .attr("width", barWidth) 
       .attr("height", d => hPaddingBottom + hViz - yScale(d.attendanceRatePercent))
       .attr("fill", getColorForDJ(djID));
   }
