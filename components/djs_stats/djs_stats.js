@@ -44,8 +44,6 @@ function addDjStatlist(allDjs) {
     let djName = document.querySelector(".djStatsName");
     let djs = returnSelectedDjs();
 
-    console.log(djs);
-
     if (allDjs) {
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
@@ -61,14 +59,7 @@ function addDjStatlist(allDjs) {
         djName.setAttribute("id", "0");
         removeDjIdClass(djName);
         djName.classList.add(`djId:${djs[0].id}`);
-    } 
-    // if (djs.length === 1) {       
-    //     djName.textContent = djs[0].name;
-    //     djName.setAttribute("id", "0");
-    //     removeDjIdClass(djName);
-    //     djName.classList.add(`djId:${djs[0].id}`);
-    // } 
-    
+    }   
 }
 
 function changeStatText(graph) {
