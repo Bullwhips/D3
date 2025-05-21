@@ -139,7 +139,7 @@ function drawDJsAttendanceRate()
         return x !== undefined ? x + barWidth * index : wPadding;
        })
       .attr("y", d => yScale(d.attendanceRatePercent))
-      .attr("width", barWidth - 2) // spacing between bars
+      .attr("width", barWidth) // spacing between bars
       .attr("height", d => hPaddingBottom + hViz - yScale(d.attendanceRatePercent))
       .attr("fill", getColorForDJ(djID));
   }
