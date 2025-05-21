@@ -33,6 +33,7 @@
     
     flex-grow: 1;
     color: white;
+    cursor: pointer;
     
 }
 
@@ -40,4 +41,8 @@
     width: 75%;
     height: 1px;
     background: #E52572;
+}
+
+.selectedGraph {
+  color: #E52572 !important;
 }

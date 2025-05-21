@@ -1,10 +1,5 @@
 
-let selectedDJs = new Set(); // stores DJ ids
-let currentYear = 2015; // tracks the current year
-let djDataset = []; 
-let xScale, yScale; // global x and y scale
-
-function renderAttendanceGraph(wrapper, selectedYear = 2015) 
+function renderAttendancePerMonthGraph(wrapper, selectedYear = 2015) 
 {
   let old = document.getElementById("graphContainer")
   
@@ -13,16 +8,6 @@ function renderAttendanceGraph(wrapper, selectedYear = 2015)
   let graphContainer = document.createElement("div")
   graphContainer.id = "graphContainer"
   wrapper.append(graphContainer)
-
-  const wSvg = 925,
-        hSvg = 638,
-        wPadding = 40,
-        hPaddingBottom = 30,
-        hPaddingTop = 20,
-        wViz = wSvg - 2 * wPadding,
-        hViz = hSvg - hPaddingBottom - hPaddingTop
-        
-        // antal = dataset.length
 
   let svg = d3.select(graphContainer)
               .append("svg")
@@ -74,7 +59,9 @@ function renderAttendanceGraph(wrapper, selectedYear = 2015)
   let maxAttendance = 5000
               
   // x-Skala
-  xScale = d3.scaleBand(months, [wPadding, wPadding + wViz]);
+  xScale = d3.scaleBand(months, [wPadding, wPadding + wViz])
+             .paddingInner(0.2)
+             .paddingOuter(0.2)
 
   // y-Skala
   yScale = d3.scaleLinear([0, maxAttendance], [hPaddingBottom + hViz, hPaddingBottom]);
@@ -139,7 +126,8 @@ function chosenDj(event) {
 }
 
 
-function drawVisibleDJs() 
+
+function drawDJsAttendancePerMonth() 
 {
   const svg = d3.select("#graphContainer").select("svg");
   svg.selectAll("path.dj-line").remove(); // clear old lines
@@ -164,7 +152,7 @@ function drawVisibleDJs()
   }
 }
 
-function drawAllDjs() 
+function drawAllDjsAttendancePerMonth() 
 {
   const svg = d3.select("#graphContainer").select("svg");
   svg.selectAll("path.dj-line").remove();
@@ -185,9 +173,5 @@ function drawAllDjs()
      .attr("d", (d) => dMaker(d.attendance[currentYear]));
 }
   
-function getColorForDJ(id) 
-{
-  const entry = djColorArray.find(dj => dj.id === id);
-  return entry.color
-}
+
 

@@ -10,3 +10,7 @@
     font-weight: 400;
     line-height: normal;
 }
+
+#nextArrow, #prevArrow{
+    cursor: pointer;
+}
