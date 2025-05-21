@@ -25,6 +25,7 @@ function renderGraphList(right) {
     let graphListAttendanceRate = document.createElement("div")
     graphListAttendanceRate.id = "graphListAttendanceRate"
     graphListAttendanceRate.textContent = "ATTENDANCE RATE"
+    graphListAttendancePerMonth.classList.add("selectedGraph");
     graphSelectionContainer.append(graphListAttendanceRate)
 
     let pinkDiv2 = document.createElement("div")
