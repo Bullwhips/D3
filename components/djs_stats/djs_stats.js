@@ -40,14 +40,34 @@ function renderDjStats (container) {
 
 let djIndex = 0;
 
-function addDjStatlist() {
+function addDjStatlist(allDjs) {
     let djName = document.querySelector(".djStatsName");
     let djs = returnSelectedDjs();
 
-    if (djs.length === 1) {       
+    console.log(djs);
+
+    if (allDjs) {
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
-    }
+        djName.classList.add(`djId:${djs[0].id}`);
+    } 
+
+    if (djs.length === 0) {
+        djName.textContent = "";
+        djName.removeAttribute("id");
+        removeDjIdClass(djName);
+    } else if (djs.length === 1) {       
+        djName.textContent = djs[0].name;
+        djName.setAttribute("id", "0");
+        removeDjIdClass(djName);
+        djName.classList.add(`djId:${djs[0].id}`);
+    } 
+    // if (djs.length === 1) {       
+    //     djName.textContent = djs[0].name;
+    //     djName.setAttribute("id", "0");
+    //     removeDjIdClass(djName);
+    //     djName.classList.add(`djId:${djs[0].id}`);
+    // } 
     
 }
 
@@ -70,6 +90,9 @@ function scrollLeftDj(event) {
             
             console.log(currentDjIndex);
             djNameElement.textContent = djs[currentDjIndex].name;
+            
+            removeDjIdClass(djNameElement);
+            djNameElement.classList.add(`djId:${djs[currentDjIndex].id}`);
         }
     }
 }
@@ -87,8 +110,19 @@ function scrollRightDj(event) {
             djNameElement.id = currentDjIndex;
 
             djNameElement.textContent = djs[currentDjIndex].name;
-            
+
+            removeDjIdClass(djNameElement);
+            djNameElement.classList.add(`djId:${djs[currentDjIndex].id}`);
         }
     }
     //när man klickar ska det gå till nästa dj i djs arrayen
+}
+
+function removeDjIdClass(dj) {
+    let classes = dj.classList;
+    for (let djClass of classes) {
+        if (djClass.startsWith("djId:")) {
+            dj.classList.remove(djClass);
+        }
+    }
 }

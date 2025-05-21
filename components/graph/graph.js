@@ -101,11 +101,15 @@ function chosenDj(event) {
   if (div.id == "allDjs") {
     if (div.classList.contains("active")) {
       div.classList.remove("active");
+      djDataset.forEach(dj => selectedDJs.delete(dj.id));
+      addDjStatlist(false);
       d3.select("svg")
         .selectAll("path.dj-line").remove();
       return;
     } else {
       div.classList.add("active");
+      djDataset.forEach(dj => selectedDJs.add(dj.id));
+      addDjStatlist(true);     
       drawAllDjs();
       return;
     }
