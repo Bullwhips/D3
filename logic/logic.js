@@ -20,7 +20,7 @@ let xScale, yScale; // global x and y scale
 
 function updateGraph(year) {
   currentYear = year;
-  drawVisibleDJs();
+  // drawVisibleDJs();
 }
 
 function returnSelectedDjs () {
@@ -38,16 +38,24 @@ function returnSelectedDjs () {
 }
 
 function calculateHighestAttendance(dj, year) {
-  //should calculate the given djs highest attendance based on the current year
-    switch (currentGraph) {
-    case "AttendancePerMonth":
-      drawDJsAttendancePerMonth();
-      break;
   
-    case "AttendanceRate":
-      drawDJsAttendanceRate()
-      break;
+  //should calculate the given djs highest attendance based on the current year
+  let allYearAttendance = dj.attendance[year];
+  let highestAttendance = 0;
+  for (let yearAttendance of allYearAttendance) {
+    if (yearAttendance.totalAttendance > highestAttendance) highestAttendance = yearAttendance.totalAttendance;
   }
+
+  return highestAttendance;
+  //   switch (currentGraph) {
+  //   case "AttendancePerMonth":
+  //     drawDJsAttendancePerMonth();
+  //     break;
+  
+  //   case "AttendanceRate":
+  //     drawDJsAttendanceRate()
+  //     break;
+  // }
 }
 
 function chosenDj(event) {
@@ -58,12 +66,19 @@ function chosenDj(event) {
   if (div.id === "allDjs") {
     if (div.classList.contains("active")) {
       div.classList.remove("active");
+      djDataset.forEach(dj => selectedDJs.delete(dj.id));
+
+      addDjStatlist(false);
       d3.select("svg").selectAll("path.dj-line").remove();
+      return;
     } else {
       div.classList.add("active");
+      djDataset.forEach(dj => selectedDJs.add(dj.id));
+
+      addDjStatlist(true);
       drawAllDjsAttendancePerMonth();
+      return;
     }
-    return;
   }
 
   // Clear previous selection styles from all DJs
@@ -99,6 +114,7 @@ if (currentGraph === "AttendanceRate") {
   // Redraw graph
   switch (currentGraph) {
     case "AttendancePerMonth":
+      addDjStatlist();
       drawDJsAttendancePerMonth();
       break;
     case "AttendanceRate":

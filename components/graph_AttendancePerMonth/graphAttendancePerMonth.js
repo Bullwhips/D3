@@ -82,6 +82,7 @@ function renderAttendancePerMonthGraph(wrapper, selectedYear = 2015)
 }
 
 function chosenDj(event) {
+  console.log("hej");
   const div = event.currentTarget;
   const djID = parseInt(div.getAttribute("data-id"));
 
@@ -122,7 +123,7 @@ function chosenDj(event) {
   }
   // returnSelectedDjs();
   addDjStatlist();
-  drawVisibleDJs();
+  // drawVisibleDJs();
 }
 
 
