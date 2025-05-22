@@ -67,9 +67,9 @@ function renderAttendanceRateGraph(wrapper, selectedYear = 2015)
 
       let attendanceRate = totalPopulation > 0 ? totalAttendance / totalPopulation : 0;
 
-      let attendanceRatePercent = Math.min(Math.round(attendanceRate * 100));;
+      let attendanceRatePerCent = Math.min(Math.round(attendanceRate * 100));;
 
-      let point = { month: month, attendanceRatePercent: attendanceRatePercent }; 
+      let point = { month: month, attendanceRatePerCent: attendanceRatePerCent }; 
 
       if (!dataset.attendance[year]) {dataset.attendance[year] = [];}
 
@@ -81,7 +81,23 @@ function renderAttendanceRateGraph(wrapper, selectedYear = 2015)
 
   }
 
-  let maxAttendancePerCent = 200
+  let maxAttendancePerCent = 0
+  console.log(djDataset)
+  
+  for (let year = 2015; year <= 2024; year++) {
+  for (let i = 0; i < djDataset.length; i++) {
+    const statsByYear = djDataset[i].attendance[year];
+   
+    
+
+    for (let j = 0; j < statsByYear.length; j++) {
+      if (statsByYear[j].attendanceRatePerCent > maxAttendancePerCent) {
+        maxAttendancePerCent = statsByYear[j].attendanceRatePerCent;
+      }
+    }
+  }
+}
+
               
   // x-Skala
   xScale = d3.scaleBand(months, [wPadding, wPadding + wViz])
@@ -134,9 +150,9 @@ function drawDJsAttendanceRate()
       .append("rect")
       .attr("class", `dj-bar dj-bar-${djID}`)
       .attr("x", d => xScale(months[d.month]))
-      .attr("y", d => yScale(d.attendanceRatePercent))
+      .attr("y", d => yScale(d.attendanceRatePerCent))
       .attr("width", barWidth) 
-      .attr("height", d => hPaddingBottom + hViz - yScale(d.attendanceRatePercent))
+      .attr("height", d => hPaddingBottom + hViz - yScale(d.attendanceRatePerCent))
       .attr("fill", getColorForDJ(djID));
   }
 
