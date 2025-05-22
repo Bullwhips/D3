@@ -8293,5 +8293,8 @@ const Gigs = [
   {"date":"2024-12-29","djID":6534,"cityID":540,"producerID":4842,"cost":200229,"djEarnings":22981,"managerEarnings":5500,"cityEarnings":51003,"producerEarnings":38585,"attendance":414,"price":469},
   {"date":"2024-12-30","djID":9254,"cityID":836,"producerID":5208,"cost":286430,"djEarnings":24300,"managerEarnings":8100,"cityEarnings":57773,"producerEarnings":65297,"attendance":594,"price":409},
   {"date":"2024-12-30","djID":5396,"cityID":869,"producerID":6975,"cost":238472,"djEarnings":43423,"managerEarnings":10000,"cityEarnings":70602,"producerEarnings":67235,"attendance":375,"price":509}
-];
+].map(gig => ({
+  ...gig,
+  date: gig.date.slice(0, 10) 
+}));
 
