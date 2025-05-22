@@ -56,7 +56,23 @@ function renderAttendancePerMonthGraph(wrapper, selectedYear = 2015)
   
   }
 
-  let maxAttendance = 5000
+
+let maxAttendance = 0;
+
+for (let year = 2015; year <= 2024; year++) {
+  for (let i = 0; i < djDataset.length; i++) {
+    const statsByYear = djDataset[i].attendance[year];
+   
+    
+
+    for (let j = 0; j < statsByYear.length; j++) {
+      if (statsByYear[j].totalAttendance > maxAttendance) {
+        maxAttendance = statsByYear[j].totalAttendance;
+      }
+    }
+  }
+}
+
               
   // x-Skala
   xScale = d3.scaleBand(months, [wPadding, wPadding + wViz])
