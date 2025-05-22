@@ -74,9 +74,7 @@ function addDjStatlist(allDjs) {
 
         updateStatNumbers(currentGraph);
         // calculateHighestAttendance(djs[0], currentYear);
-    } else if (djs.length > 1) {
-
-    }  
+    } 
 }
 
 function changeStatText(graph) {

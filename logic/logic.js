@@ -45,6 +45,7 @@ function calculateHighestAttendance(dj, year) {
   
   //should calculate the given djs highest attendance based on the current year
   let allYearAttendance = dj.attendance[year];
+  console.log(allYearAttendance);
   let highestAttendance = 0;
   for (let yearAttendance of allYearAttendance) {
     if (yearAttendance.totalAttendance > highestAttendance) highestAttendance = yearAttendance.totalAttendance;
