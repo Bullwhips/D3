@@ -138,10 +138,11 @@ function scrollLeftDj(event) {
 
     if (djs.length > 1) {
         currentDjIndex = parseInt(djNameElement.id);
-        
-        if (currentDjIndex < djs.length && currentDjIndex !== 0) {
+         currentDjIndex = (currentDjIndex + 1) % djs.length
 
-            currentDjIndex = currentDjIndex - 1;
+        
+
+          
             djNameElement.id = currentDjIndex;
             currentDj = djs[currentDjIndex];
             
@@ -153,7 +154,7 @@ function scrollLeftDj(event) {
             updateStatNumbers(currentGraph);
 
 
-        }
+        
     }
 }
 
@@ -164,9 +165,9 @@ function scrollRightDj(event) {
 
     if (djs.length > 1) {
         currentDjIndex = parseInt(djNameElement.id)
-    
-        if (currentDjIndex < djs.length - 1) {
-            currentDjIndex = currentDjIndex + 1
+        currentDjIndex = (currentDjIndex - 1 + djs.length) % djs.length;
+     
+            
             djNameElement.id = currentDjIndex;
             currentDj = djs[currentDjIndex];
 
@@ -175,7 +176,7 @@ function scrollRightDj(event) {
             removeDjIdClass(djNameElement);
             djNameElement.classList.add(`djId:${djs[currentDjIndex].id}`);
             updateStatNumbers(currentGraph);
-        }
+        
     }
     //när man klickar ska det gå till nästa dj i djs arrayen
 }
