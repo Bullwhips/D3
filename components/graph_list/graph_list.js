@@ -77,7 +77,17 @@ graphListAttendanceRate.addEventListener("click", () => {
     addDjStatlist();
 })
 
- 
+graphListEarningsPerMonth.addEventListener("click", () => {
+    currentGraph = "EarningsPerMonth";
+    selectedDJs.clear();
+    djDataset = [];
+    clearAllDjBorders();
+    clearGraphSelectionColors();
+    graphListEarningsPerMonth.classList.add("selectedGraph");
+    renderGraphEarningsPerMonth(left);
+    changeStatText(currentGraph);
+    addDjStatlist();
+})
 }
 
 

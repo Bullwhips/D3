@@ -63,14 +63,65 @@ function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
     console.log(djDataset);
     console.log(maxEarnings);
 
-    let xScale = d3.scaleBand(months, [wPadding, wPadding + wViz])
+    xScale = d3.scaleBand(months, [earningsPerMonthwPadding, earningsPerMonthwPadding + wViz])
                     .paddingInner(0.2)
                     .paddingOuter(0.2);
 
-    let yScale = d3.scaleLinear([0, maxAttendance], [hPaddingBottom + hViz, hPaddingBottom]);
+    yScale = d3.scaleLinear([0, maxEarnings], [hPaddingBottom + hViz, hPaddingBottom]);
 
-    let xAxisFunction = d3.AxisBottom(xScale)
+    let xAxisFunction = d3.axisBottom(xScale)
     svg.append("g")
         .call(xAxisFunction)
         .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
+        .style("color", "white")
+    
+    let yAxisFunction = d3.axisLeft(yScale);
+    svg.append("g")
+        .call(yAxisFunction)
+        .attr("transform", `translate(${earningsPerMonthwPadding}, 0)`)
+        .style("color", "white")
 } 
+
+function drawDjsEarningsPerMonth() {
+
+    const svg = d3.select("#graphContainer").select("svg")
+    svg.selectAll("path.dj-line").remove();
+
+    dMaker = d3.line()
+        .x((d) => xScale(months[d.month]) + xScale.bandwidth() / 2)
+        .y((d) => yScale(d.totalEarnings));
+
+    for (let djID of selectedDJs) { 
+        const dj = djDataset.find(d => d.id === djID);
+        const yearData = dj.earnings[currentYear];
+
+        svg.append("path")
+            .datum(yearData)
+            .attr("class", "dj-line")
+            .attr("id", `line_${djID}_${currentYear}`)
+            .attr("stroke", getColorForDJ(djID))
+            .attr("stroke-width", 3)
+            .attr("fill", "none")
+            .attr("d", dMaker);
+    }
+}
+
+function drawAllDjsEarningsPerMonth() {
+    const svg = d3.select("#graphContainer").select("svg");
+    svg.selectAll("path.dj-line").remove();
+
+    let dMaker = d3.line()
+        .x(d => xScale(months[d.month]) + xScale.bandwidth() / 2)
+        .y(d => yScale(d.totalEarnings));
+
+    let paths = svg.selectAll("path.dj-line")
+                .data(djDataset)
+                .enter()
+                .append("path")
+                .attr("class", "dj-line")
+                .attr("id", (d) => `line_${d.id}_${currentYear}`)
+                .attr("stroke", (d) => getColorForDJ(d.id))
+                .attr("stroke-width", 3)
+                .attr("fill", "none")
+                .attr("d", (d) => dMaker(d.earnings[currentYear]))
+}

@@ -52,6 +52,8 @@ function addDjStatlist(allDjs) {
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
         djName.classList.add(`djId:${djs[0].id}`);
+        currentDj = djs[0];
+        updateStatNumbers(currentGraph);
     } 
 
     if (djs.length === 0) {
@@ -89,13 +91,18 @@ function changeStatText(graph) {
             firstStat.textContent = "Highest Attendance:";
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Attendance:";
-            break;
-        
+            break;        
         case "AttendanceRate":
             firstStat.textContent = "Highest Average:";
-            console.log(firstStat.textContent);
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Attendance Rate:";
+            break;
+        case "EarningsPerMonth":
+            firstStat.textContent = "Highest Earnings:";
+            secondStat.textContent = "Best Month:";
+            thirdStat.textContent = "Avg Earnings";
+            break;
+        default:
             break;
     }
 }
@@ -110,14 +117,17 @@ function updateStatNumbers(graph) {
             firstStatNumber.textContent = calculateHighestAttendance(currentDj, currentYear);
             secondStatNumber.textContent = calculateBestMonth(currentDj, currentYear);
             thirdStatNumber.textContent = calculateAverageAttendance(currentDj, currentYear);
-            break;
-        
+            break;       
         case "AttendanceRate":
             firstStatNumber.textContent = calculateHighestAverage(currentDj, currentYear) + "%";
             secondStatNumber.textContent = calculateBestMonthAttendanceRate(currentDj, currentYear);
             thirdStatNumber.textContent  = calculateAverageAttendanceRate(currentDj, currentYear) + "%";
             break;
-
+        case "EarningsPerMonth":
+            firstStatNumber.textContent = calculateHighestEarnings(currentDj, currentYear) + " kr";
+            secondStatNumber.textContent = calculateBestEarningsMonth(currentDj, currentYear);
+            thirdStatNumber.textContent = calculateAverageEarnings(currentDj, currentYear) + " kr";
+            break;
     }
 }
 

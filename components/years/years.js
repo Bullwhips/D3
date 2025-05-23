@@ -38,6 +38,6 @@ function renderYears(wrapper) {
     });
 
     // Initial display
-    updateYear();
+    // updateYear();
 
 }

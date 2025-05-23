@@ -21,10 +21,24 @@ let xScale, yScale; // global x and y scale
 function updateGraph(year) {
   currentYear = year;
   if (currentDj) {
+    console.log(currentGraph)
     updateStatNumbers(currentGraph);
   }
   // drawVisibleDJs();
-  drawDJsAttendancePerMonth();
+  if (document.getElementById("allDjs").classList.contains("active")) {
+ 
+    if (currentGraph === "AttendancePerMonth") {  
+      drawAllDjsAttendancePerMonth();
+    } else if (currentGraph === "EarningsPerMonth") {
+      drawAllDjsEarningsPerMonth();
+    }
+  } else {
+    if (currentGraph === "AttendancePerMonth") {  
+      drawDJsAttendancePerMonth();
+    } else if (currentGraph === "EarningsPerMonth") {
+      drawDjsEarningsPerMonth();
+    }
+  }
 }
 
 function returnSelectedDjs () {
@@ -36,31 +50,23 @@ function returnSelectedDjs () {
         allSelectedDjs.push(dj);
       }
     }
-  }
-  
+  } 
   return allSelectedDjs;
 }
 
+
+
+//Attendance Per Month Stat Functions
+
 function calculateHighestAttendance(dj, year) {
-  
-  //should calculate the given djs highest attendance based on the current year
   let allYearAttendance = dj.attendance[year];
-  console.log(allYearAttendance);
   let highestAttendance = 0;
+
   for (let yearAttendance of allYearAttendance) {
     if (yearAttendance.totalAttendance > highestAttendance) highestAttendance = yearAttendance.totalAttendance;
   }
 
   return highestAttendance;
-  //   switch (currentGraph) {
-  //   case "AttendancePerMonth":
-  //     drawDJsAttendancePerMonth();
-  //     break;
-  
-  //   case "AttendanceRate":
-  //     drawDJsAttendanceRate()
-  //     break;
-  // }
 }
 
 function calculateBestMonth(dj, year) {
@@ -80,6 +86,35 @@ function calculateBestMonth(dj, year) {
   return bestMonth;
 }
 
+
+function calculateAverageAttendance(dj, year) {
+  let totalAttendance = 0;
+  const allMonths = months.length;
+
+  allYearAttendance = dj.attendance[year];
+  allYearAttendance.forEach(att => totalAttendance = totalAttendance + att.totalAttendance);
+
+  //divide by allMonths even if some months are 0?
+  let averageAttendance = totalAttendance / allMonths;
+  return Math.floor(averageAttendance);
+
+}
+
+
+
+//Attendance Rate Stat Functions
+
+function calculateHighestAverage(dj, year) {
+  let highestAverage = 0;
+
+  let allYearAverage = dj.attendance[year];
+  for (let avg of allYearAverage) {
+    if (avg.attendanceRatePercent > highestAverage) highestAverage = avg.attendanceRatePercent;
+  }
+
+  return highestAverage;
+}
+
 function calculateBestMonthAttendanceRate(dj, year) {
   let bestMonthNumber = 0;
   let highestRate = 0;
@@ -96,30 +131,6 @@ function calculateBestMonthAttendanceRate(dj, year) {
   return bestMonth;
 }
 
-function calculateAverageAttendance(dj, year) {
-  let totalAttendance = 0;
-  const allMonths = months.length;
-
-  allYearAttendance = dj.attendance[year];
-  allYearAttendance.forEach(att => totalAttendance = totalAttendance + att.totalAttendance);
-
-  //divide by allMonths even if some months are 0?
-  let averageAttendance = totalAttendance / allMonths;
-  return Math.floor(averageAttendance);
-
-}
-
-function calculateHighestAverage(dj, year) {
-  let highestAverage = 0;
-
-  let allYearAverage = dj.attendance[year];
-  for (let avg of allYearAverage) {
-    if (avg.attendanceRatePercent > highestAverage) highestAverage = avg.attendanceRatePercent;
-  }
-
-  return highestAverage;
-}
-
 function calculateAverageAttendanceRate(dj, year) {
   let avg = 0;
   let allMonths = months.length;
@@ -130,6 +141,51 @@ function calculateAverageAttendanceRate(dj, year) {
   let averageAttendanceRate = avg / allMonths;
   return averageAttendanceRate.toFixed(2);
 }
+
+
+
+
+//Earnings per month stat functions
+
+function calculateHighestEarnings(dj, year) {
+  let highest = 0;
+  const allYearEarnings = dj.earnings[year];
+
+  for (let month of allYearEarnings) {
+    if (month.totalEarnings > highest) highest = month.totalEarnings;
+  }
+
+  return highest;
+}
+
+function calculateBestEarningsMonth(dj, year) {
+  let bestMonthNumber = 0;
+  let highestEarnings = 0;
+
+  let allYearEarnings = dj.earnings[year];
+  for (let earnings of allYearEarnings) {
+    if (earnings.totalEarnings > highestEarnings) {
+      highestEarnings = earnings.totalEarnings;
+      bestMonthNumber = earnings.month;
+    }
+  }
+
+  let bestMonth = months[bestMonthNumber];
+  return bestMonth;
+}
+
+function calculateAverageEarnings(dj, year) {
+  let earnings = 0;
+  let allMonths = months.length;
+
+  let allYearEarnings = dj.earnings[year];
+  allYearEarnings.forEach(n => earnings = earnings + n.totalEarnings);
+
+  let averageEarnings = earnings / allMonths;
+  return Math.floor(averageEarnings);
+  
+}
+
 
 function chosenDj(event) {
   const div = event.currentTarget;
@@ -149,7 +205,12 @@ function chosenDj(event) {
       djDataset.forEach(dj => selectedDJs.add(dj.id));
 
       addDjStatlist(true);
-      drawAllDjsAttendancePerMonth();
+      if (currentGraph === "AttendancePerMonth") {
+        // console.log(currentGraph);
+        drawAllDjsAttendancePerMonth();
+      } else if (currentGraph === "EarningsPerMonth") {
+        drawAllDjsEarningsPerMonth();
+      }
       return;
     }
   }
@@ -159,7 +220,7 @@ if (currentGraph === "AttendanceRate") {
   document.querySelectorAll(".chosenDjBorder").forEach(border => {
     border.style.borderBottom = "none";
   });
-}
+} 
 
 
   if (currentGraph === "AttendanceRate") {
@@ -195,8 +256,12 @@ if (currentGraph === "AttendanceRate") {
       drawDJsAttendancePerMonth();
       break;
     case "AttendanceRate":
+        addDjStatlist();
+        drawDJsAttendanceRate();
+        break;
+    case "EarningsPerMonth":
       addDjStatlist();
-      drawDJsAttendanceRate();
+      drawDjsEarningsPerMonth();
       break;
   }
 }
