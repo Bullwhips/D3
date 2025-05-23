@@ -2,7 +2,7 @@ const wrapper = document.createElement("main")
 wrapper.id = "wrapper"
 document.querySelector("body").append(wrapper)
 
-let currentGraph = "AttendancePerMonth"
+let currentGraph = "EarningsPerMonth"
 
   const wSvg = 925,
         hSvg = 638,
@@ -27,6 +27,8 @@ switch (currentGraph) {
   case "AttendanceRate":
     renderAttendanceRateGraph(left);
     break;
+    case "EarningsPerMonth":
+        renderGraphEarningsPerMonth(left);
 }
 renderDjStats(right);
 renderGraphList(right);
