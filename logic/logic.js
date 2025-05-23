@@ -37,6 +37,8 @@ function updateGraph(year) {
       drawDJsAttendancePerMonth();
     } else if (currentGraph === "EarningsPerMonth") {
       drawDjsEarningsPerMonth();
+    } else if (currentGraph === "AttendanceRate") {
+      drawDJsAttendanceRate();
     }
   }
 }
