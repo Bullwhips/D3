@@ -4,7 +4,7 @@ function renderDjList(container) {
     allDjs.setAttribute("id", "allDjs");
 
     let allDjsP = document.createElement("p");
-    allDjsP.textContent = "DJ:s";
+    allDjsP.textContent = "All DJ:s";
 
     allDjs.appendChild(allDjsP);
 

@@ -225,6 +225,11 @@ function chosenDj(event) {
     if (div.classList.contains("active")) {
       div.classList.remove("active");
       djDataset.forEach(dj => selectedDJs.delete(dj.id));
+      let navItems = document.querySelectorAll("[data-id]");
+      for (let nav of navItems) {
+        nav.firstChild.firstElementChild.style.border = "none";
+        nav.style.pointerEvents = "auto";
+      }
 
       addDjStatlist(false);
       d3.select("svg").selectAll("path.dj-line").remove();
@@ -233,7 +238,14 @@ function chosenDj(event) {
     } else {
       div.classList.add("active");
       djDataset.forEach(dj => selectedDJs.add(dj.id));
+      let navItems = document.querySelectorAll("[data-id]");
 
+      for (let nav of navItems) {
+        let id = parseInt(nav.getAttribute("data-id"));       
+        nav.firstChild.firstElementChild.style.borderBottom = `3px solid ${getColorForDJ(id)}`;
+        nav.style.pointerEvents = "none";
+      }
+      console.log(navItems);
       addDjStatlist(true);
       if (currentGraph === "AttendancePerMonth") {
         // console.log(currentGraph);
