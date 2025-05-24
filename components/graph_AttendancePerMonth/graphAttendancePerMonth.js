@@ -1,13 +1,13 @@
 
-function renderAttendancePerMonthGraph(wrapper, selectedYear = 2015) 
+function renderAttendancePerMonthGraph(left, selectedYear = 2015) 
 {
   let old = document.getElementById("graphContainer")
   
-  if (old) {wrapper.removeChild(old)}
+  if (old) {left.removeChild(old)}
 
   let graphContainer = document.createElement("div")
   graphContainer.id = "graphContainer"
-  wrapper.append(graphContainer)
+  left.append(graphContainer)
 
   let svg = d3.select(graphContainer)
               .append("svg")
@@ -95,6 +95,8 @@ for (let year = 2015; year <= 2024; year++) {
      .call(yAxisFunction)
      .attr("transform", `translate(${wPadding}, 0)`)
      .style("color", "white");  
+
+     attendancePerMonthText(left)
 }
 
 
