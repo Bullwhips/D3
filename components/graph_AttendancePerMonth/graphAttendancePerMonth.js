@@ -45,7 +45,7 @@ function renderAttendancePerMonthGraph(left, selectedYear = 2015)
    
       let totalAttendance = djGigs.reduce((sum, gig) => sum + (gig.attendance ), 0);
 
-      let point = { month: month, totalAttendance: totalAttendance }; 
+      let point = { month: month, totalAttendance: totalAttendance, gigs: djGigs.length}; 
 
       if (!dataset.attendance[year]) {dataset.attendance[year] = [];}
 

@@ -32,7 +32,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
       let totalEarnings = 0;
       let totalAttendanceRate = 0;
       let monthsCount = 0;
-      
+      let totalGigs = 0;
     
       for (let month = 0; month < 12; month++) {
         let djGigs = Gigs.filter(x => x.djID == djID)
@@ -45,7 +45,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
         
         let djCitiesPopulation = [];
         let currentCityID;
-
+        totalGigs = totalGigs + djGigs.length;               
         
         for (let i = 0; i < djGigs.length; i++) {
           currentCityID = djGigs[i].cityID;
@@ -70,12 +70,12 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
         monthsCount++;
       }
 
- 
       let attendanceRatePerCent = Math.round((totalAttendanceRate / monthsCount) * 100);
       dataset.data[year] = {
         attendanceRatePerCent: attendanceRatePerCent,
         totalAttendance: totalAttendance,
         totalEarnings: totalEarnings,
+        gigs: totalGigs
       };
     }
 

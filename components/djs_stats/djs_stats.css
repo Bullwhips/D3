@@ -48,7 +48,10 @@
 
 #firstStatNumber, 
 #secondStatNumber,
-#thirdStatNumber {
+#thirdStatNumber,
+#fourthStatNumber,
+#fifthStatNumber {
+    font-family: "Beyonders";
     color: #E52572;
 }
 

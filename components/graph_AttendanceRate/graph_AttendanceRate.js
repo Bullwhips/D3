@@ -69,7 +69,7 @@ function renderAttendanceRateGraph(wrapper, selectedYear = 2015)
 
       let attendanceRatePerCent = Math.min(Math.round(attendanceRate * 100));;
 
-      let point = { month: month, attendanceRatePerCent: attendanceRatePerCent }; 
+      let point = { month: month, attendanceRatePerCent: attendanceRatePerCent, gigs: djGigs.length }; 
 
       if (!dataset.attendance[year]) {dataset.attendance[year] = [];}
 

@@ -51,7 +51,7 @@ function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
                 if (totalEarnings > maxEarnings) maxEarnings = totalEarnings;
             }
 
-            let point = {month: month, totalEarnings: totalEarnings};
+            let point = {month: month, totalEarnings: totalEarnings, gigs: djGigs.length};
 
             if (!dataset.earnings[year]) dataset.earnings[year] = [];
 

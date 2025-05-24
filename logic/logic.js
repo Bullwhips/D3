@@ -94,20 +94,6 @@ function calculateBestMonth(dj, year) {
 }
 
 
-function calculateAverageAttendance(dj, year) {
-  let totalAttendance = 0;
-  const allMonths = months.length;
-
-  allYearAttendance = dj.attendance[year];
-  allYearAttendance.forEach(att => totalAttendance = totalAttendance + att.totalAttendance);
-
-  //divide by allMonths even if some months are 0?
-  let averageAttendance = totalAttendance / allMonths;
-  return Math.floor(averageAttendance);
-
-}
-
-
 
 //Attendance Rate Stat Functions
 
@@ -116,7 +102,8 @@ function calculateHighestAverage(dj, year) {
 
   let allYearAverage = dj.attendance[year];
   for (let avg of allYearAverage) {
-    if (avg.attendanceRatePercent > highestAverage) highestAverage = avg.attendanceRatePercent;
+    console.log(avg);
+    if (avg.attendanceRatePerCent > highestAverage) highestAverage = avg.attendanceRatePerCent;
   }
 
   return highestAverage;
@@ -128,25 +115,14 @@ function calculateBestMonthAttendanceRate(dj, year) {
 
   let allYearRate = dj.attendance[year];
   for (let rate of allYearRate) {
-    if (rate.attendanceRatePercent > highestRate) {
-      highestRate = rate.attendanceRatePercent;
+    if (rate.attendanceRatePerCent > highestRate) {
+      highestRate = rate.attendanceRatePerCent;
       bestMonthNumber = rate.month;
     }
   }
 
   let bestMonth = months[bestMonthNumber];
   return bestMonth;
-}
-
-function calculateAverageAttendanceRate(dj, year) {
-  let avg = 0;
-  let allMonths = months.length;
-
-  let yearAverage = dj.attendance[year];
-  yearAverage.forEach(n => avg = avg + n.attendanceRatePercent);
-
-  let averageAttendanceRate = avg / allMonths;
-  return averageAttendanceRate.toFixed(2);
 }
 
 
@@ -181,31 +157,62 @@ function calculateBestEarningsMonth(dj, year) {
   return bestMonth;
 }
 
-function calculateAverageEarnings(dj, year) {
-  let earnings = 0;
-  let allMonths = months.length;
+function calculateAverageByGigs(dj, year, graph, type) {
+  let totalGigs = calculateTotalYearlyGigs(dj, year, graph);
+  let total = calculateTotal(dj, year, graph, type);
 
-  let allYearEarnings = dj.earnings[year];
-  allYearEarnings.forEach(n => earnings = earnings + n.totalEarnings);
-
-  let averageEarnings = earnings / allMonths;
-  return Math.floor(averageEarnings);
-  
+  let average = total/totalGigs;
+  if (average > 0) {
+    return Math.round(average);
+  } else {
+    return 0;
+  }
 }
 
 
-
-
-function calculateTotalAttendance(dj, year, graph) {
-  let totalAttendance = 0;
+function calculateTotal(dj, year, graph, type) {
+  let total = 0;
   
   switch (graph) {
     case "AttendancePerMonth":
       let djYearArray = dj.attendance[year];
-      djYearArray.forEach(n => totalAttendance = totalAttendance + n.totalAttendance);
-      return totalAttendance;
+      djYearArray.forEach(n => total = total + n.totalAttendance);
+      return total;
+    case "AttendanceRate":
+      let djAttendanceArray = dj.attendance[year];
+      djAttendanceArray.forEach(n => total = total + n.attendanceRatePerCent);
+      return total;
     case "FullData":
-      return dj.data[year].totalAttendance;
+      if (type === "earnings") {
+        return dj.data[year].totalEarnings;
+      } else if (type === "attendance") {
+        return dj.data[year].totalAttendance;
+      }
+      break;
+    case "EarningsPerMonth":
+      let djEarningsArray = dj.earnings[year];
+      djEarningsArray.forEach(n => total = total + n.totalEarnings);
+      return total;
+  }
+}
+
+function calculateTotalYearlyGigs(dj, year, graph) {
+  let totalGigs = 0;
+  
+  switch (graph) {
+    case "AttendancePerMonth":
+      dj.attendance[year].forEach(n => totalGigs = totalGigs + n.gigs);
+      return totalGigs;
+    case "AttendanceRate":
+      dj.attendance[year].forEach(n => totalGigs = totalGigs + n.gigs);
+      return totalGigs;
+    case "EarningsPerMonth": 
+      dj.earnings[year].forEach(n => totalGigs = totalGigs + n.gigs);
+      return totalGigs;
+    case "FullData":
+      totalGigs = dj.data[year].gigs;
+      console.log("Full Data gigs ", totalGigs);
+      return totalGigs;
   }
 }
 

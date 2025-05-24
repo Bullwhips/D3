@@ -35,7 +35,7 @@ function renderDjStats (container) {
         <p id="fourthStat"></p>
         <p id="fourthStatNumber"></p>
     </div>
-    <div class="stat">
+    <div id="fifthStatContainer" class="stat">
         <p id="fifthStat"></p>
         <p id="fifthStatNumber"></p>
     </div>
@@ -70,9 +70,17 @@ function addDjStatlist(allDjs) {
         removeDjIdClass(djName);
         currentDj = null;
 
-        document.getElementById("firstStatNumber").textContent = "0";
+        document.getElementById("firstStatNumber").textContent = "";
         document.getElementById("secondStatNumber").textContent = "";
-        document.getElementById("thirdStatNumber").textContent = "0";
+        document.getElementById("thirdStatNumber").textContent = "";
+        document.getElementById("fourthStatNumber").textContent = "";
+        if (currentGraph !== "AttendanceRate") {
+            document.getElementById("fifthStatNumber").textContent = "";
+            document.getElementById("fifthStatContainer").style.height = "100%";
+        } else {
+            document.getElementById("fifthStat").textContent = "";
+            document.getElementById("fifthStatContainer").style.height = 0;
+        }
     } else if (djs.length === 1) {    
         console.log(djs[0]);   
         djName.textContent = djs[0].name;
@@ -88,7 +96,6 @@ function addDjStatlist(allDjs) {
 }
 
 function changeStatText(graph) {
-    console.log("hej");
     let firstStat = document.getElementById("firstStat");
     let secondStat = document.getElementById("secondStat");
     let thirdStat = document.getElementById("thirdStat");
@@ -97,7 +104,6 @@ function changeStatText(graph) {
 
     switch (graph) {
         case "AttendancePerMonth":
-            console.log("hej");
             firstStat.textContent = "Highest Attendance:";
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Attendance:";
@@ -108,6 +114,7 @@ function changeStatText(graph) {
             firstStat.textContent = "Highest Average:";
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Attendance Rate:";
+            fourthStat.textContent = "Total Gigs";
             break;
         case "EarningsPerMonth":
             firstStat.textContent = "Highest Earnings:";
@@ -117,10 +124,10 @@ function changeStatText(graph) {
             fifthStat.textContent = "Total Gigs";
             break;
         case "FullData":
-            firstStat.textContent = "Highest Attendance:";
-            secondStat.textContent = "Best Month:";
+            firstStat.textContent = "Total Attendance";
+            secondStat.textContent = "Total Earnings:";
             thirdStat.textContent = "Avg Attendance:";
-            fourthStat.textContent = "Total Attendance";
+            fourthStat.textContent = "Avg Earnings";
             fifthStat.textContent = "Total Gigs";
             break;
         default:
@@ -132,30 +139,38 @@ function updateStatNumbers(graph) {
     let firstStatNumber = document.getElementById("firstStatNumber");
     let secondStatNumber = document.getElementById("secondStatNumber");
     let thirdStatNumber = document.getElementById("thirdStatNumber");
-    let fourtStatNumber = document.getElementById("fourthStatNumber");
+    let fourthStatNumber = document.getElementById("fourthStatNumber");
     let fifthStatNumber = document.getElementById("fifthStatNumber");
 
     switch (graph) {
         case "AttendancePerMonth":
             firstStatNumber.textContent = calculateHighestAttendance(currentDj, currentYear);
             secondStatNumber.textContent = calculateBestMonth(currentDj, currentYear);
-            thirdStatNumber.textContent = calculateAverageAttendance(currentDj, currentYear);
-            fourtStatNumber.textContent = calculateTotalAttendance(currentDj, currentYear, currentGraph);
+            // thirdStatNumber.textContent = calculateAverageAttendance(currentDj, currentYear);
+            thirdStatNumber.textContent = calculateAverageByGigs(currentDj, currentYear, currentGraph);
+            fourthStatNumber.textContent = calculateTotal(currentDj, currentYear, currentGraph);
+            fifthStatNumber.textContent  = calculateTotalYearlyGigs(currentDj, currentYear, currentGraph);
             break;       
         case "AttendanceRate":
             firstStatNumber.textContent = calculateHighestAverage(currentDj, currentYear) + "%";
             secondStatNumber.textContent = calculateBestMonthAttendanceRate(currentDj, currentYear);
-            thirdStatNumber.textContent  = calculateAverageAttendanceRate(currentDj, currentYear) + "%";
+            thirdStatNumber.textContent  = calculateAverageByGigs(currentDj, currentYear, currentGraph) + "%";
+            fourthStatNumber.textContent  = calculateTotalYearlyGigs(currentDj, currentYear, currentGraph);
             break;
         case "EarningsPerMonth":
             firstStatNumber.textContent = calculateHighestEarnings(currentDj, currentYear) + " kr";
             secondStatNumber.textContent = calculateBestEarningsMonth(currentDj, currentYear);
-            thirdStatNumber.textContent = calculateAverageEarnings(currentDj, currentYear) + " kr";
+            // thirdStatNumber.textContent = calculateAverageEarnings(currentDj, currentYear) + " kr";
+            thirdStatNumber.textContent = calculateAverageByGigs(currentDj, currentYear, currentGraph) + " kr";
+            fourthStatNumber.textContent = calculateTotal(currentDj, currentYear, currentGraph) + " kr";
+            fifthStatNumber.textContent  = calculateTotalYearlyGigs(currentDj, currentYear, currentGraph);
             break;
         case "FullData":
-
-
-            fourthStatNumber.textContent = calculateTotalAttendance(currentDj, currentYear, currentGraph);
+            firstStatNumber.textContent = calculateTotal(currentDj, currentYear, currentGraph, "attendance");
+            secondStatNumber.textContent = calculateTotal(currentDj, currentYear, currentGraph, "earnings");
+            thirdStatNumber.textContent = calculateAverageByGigs(currentDj, currentYear, currentGraph, "attendance");
+            fourthStatNumber.textContent = calculateAverageByGigs(currentDj, currentYear, currentGraph, "earnings");
+            fifthStatNumber.textContent  = calculateTotalYearlyGigs(currentDj, currentYear, currentGraph);
             break;
     }
 }

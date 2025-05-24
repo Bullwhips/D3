@@ -8,9 +8,9 @@ function attendancePerMonthText(left) {
   text.id = "text"
   text.innerHTML = `Den här grafen visar "Attendance Per Month", altså mängden besökare en Dj drog totalt för varje månad i ett år! <br>
                     Varje DJ representeras av en linje.<br>
-                    På X axlen visas månaderna och på Y axlen mänden besökare.<br>
+                    På X axlen visas månaderna och på Y axlen mängden besökare.<br>
                     När det kommer till frågan "Vilken DJ har varit mest populär?" så är mängden besökare nog den viktigaste statistiken att analysera.<br>
-                    En populär DJ kommer att bli mer bokad samt dra mer publik.`
+                    En populär DJ kommer att få fler bokningar samt dra mer publik.`
   textContainer.append(text)
 }
 
@@ -21,13 +21,13 @@ function earningsPerMonthText(left) {
 
   let text = document.createElement("p")
   text.id = "text"
-  text.innerHTML = `Den här grafen visar "Earnings Per Month", altså mängden pengar en DJ tjänat totalt över ett år!<br>
+  text.innerHTML = `Den här grafen visar "Earnings Per Month", alltså mängden pengar en DJ tjänat totalt över ett år!<br>
                     Varje DJ representeras av en linje.<br>
                     På X axlen visas månaderna och på Y axlen den totala inkomsten i kr.<br>
                     När det kommer till frågan "Vilken DJ har varit mest populär?" Så är inkomst viktigare än man kanske tror.<br>
-                    Man kanske tror att inkomst bara är från bokningsavgift och biljettpris, men det kan vara mycket mer.<br>
-                    Inkomst kan även innefatta alla typer av merch och streaming förmåner,<br>
-                    Så publik är inte allt. En DJ sälja mycket populär merch eller ha många spelningar på sinna bangers online.`
+                    Man kan tro att inkomst bara är från bokningsavgift och biljettpris, men det kan vara mycket mer.<br>
+                    Inkomst kan även innefatta alla typer av merch och streamingförmåner,<br>
+                    Så publik är inte allt. En populär DJ kan sälja mycket merch eller ha många spelningar på sina bangers online.`
   textContainer.append(text)
 }
 
@@ -39,7 +39,7 @@ function attendanceRateText(left) {
     
   let text = document.createElement("p")
   text.id = "text"
-  text.innerHTML = `Den här grafen visar "Attendance Rate", altså mängden besökare en Dj drog totalt för varje gig delat på stadens befolkning! <br>
+  text.innerHTML = `Den här grafen visar "Attendance Rate", alltså mängden besökare en Dj drog totalt för varje gig delat på stadens befolkning! <br>
   Varje månad representeras av en stapel.<br>
   På X axlen visas månaderna och på Y axlen besöksfrekvensen i procent.<br>
   När det kommer till frågan "Vilken DJ har varit mest populär?" så ger besöksfrekvensen viktig kontext. <br>
