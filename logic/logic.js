@@ -198,7 +198,6 @@ function chosenDj(event) {
   const div = event.currentTarget;
   const djID = parseInt(div.getAttribute("data-id"));
 
-  // Handle "All DJs" click (for line chart only)
   if (div.id === "allDjs") {
     if (div.classList.contains("active")) {
       div.classList.remove("active");
@@ -206,6 +205,7 @@ function chosenDj(event) {
 
       addDjStatlist(false);
       d3.select("svg").selectAll("path.dj-line").remove();
+      d3.select("svg").selectAll("circle.dj-circle").remove();
       return;
     } else {
       div.classList.add("active");
