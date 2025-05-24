@@ -23,17 +23,17 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
     const dataset = {
       id: djID,
       name: dj.name,
-      data: {}, // will now store yearly aggregated data
+      data: {}, 
     };
     
-    // Aggregate data by year
+  
     for (let year = 2015; year <= 2024; year++) {
       let totalAttendance = 0;
       let totalEarnings = 0;
       let totalAttendanceRate = 0;
       let monthsCount = 0;
       
-      // Loop through each month of the year (0 to 11 for months)
+    
       for (let month = 0; month < 12; month++) {
         let djGigs = Gigs.filter(x => x.djID == djID)
                          .filter(x => {
@@ -46,7 +46,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
         let djCitiesPopulation = [];
         let currentCityID;
 
-        // Sum up attendance and earnings for the year
+        
         for (let i = 0; i < djGigs.length; i++) {
           currentCityID = djGigs[i].cityID;
           let currentCity = Cities.find((city) => city.id === currentCityID);
@@ -63,7 +63,6 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
         totalAttendance += totalAttendanceForMonth;
         totalEarnings += yearlyEarnings;
 
-        // Calculate monthly attendance rate and add to total
         let totalPopulation = djCitiesPopulation.reduce((sum, pop) => sum + pop, 0);
         let attendanceRate = totalPopulation > 0 ? totalAttendanceForMonth / totalPopulation : 0;
         totalAttendanceRate += attendanceRate;
@@ -71,7 +70,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
         monthsCount++;
       }
 
-      // Now store the aggregated data for the year
+ 
       let attendanceRatePerCent = Math.round((totalAttendanceRate / monthsCount) * 100);
       dataset.data[year] = {
         attendanceRatePerCent: attendanceRatePerCent,
@@ -80,13 +79,12 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
       };
     }
 
-    djDataset.push(dataset); // Push the new aggregated data for this DJ
+    djDataset.push(dataset); 
   }
 
   console.log(djDataset);
   
 
-  // After aggregation, let's compute the maximum attendance and earnings for the graph scaling
   let maxAttendancePerCent = 0;
   let maxAttendance = 0;
   let maxEarnings = 0;
@@ -109,7 +107,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
   console.log(maxEarnings);
   console.log(maxAttendancePerCent);
 
-  // Now you can plot these values using d3 as per your original logic
+ 
 
 
 
