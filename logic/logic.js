@@ -31,6 +31,8 @@ function updateGraph(year) {
       drawAllDjsAttendancePerMonth();
     } else if (currentGraph === "EarningsPerMonth") {
       drawAllDjsEarningsPerMonth();
+    } else if (currentGraph === "FullData") {
+      drawAllDjsFullData();
     }
   } else {
     if (currentGraph === "AttendancePerMonth") {  
@@ -39,6 +41,9 @@ function updateGraph(year) {
       drawDjsEarningsPerMonth();
     } else if (currentGraph === "AttendanceRate") {
       drawDJsAttendanceRate();
+    }
+    else if (currentGraph === "FullData") {
+      drawDJsFullData() 
     }
   }
 }
@@ -212,6 +217,8 @@ function chosenDj(event) {
         drawAllDjsAttendancePerMonth();
       } else if (currentGraph === "EarningsPerMonth") {
         drawAllDjsEarningsPerMonth();
+      } else if (currentGraph === "FullData") {
+        drawAllDjsFullData();
       }
       return;
     }
@@ -264,6 +271,10 @@ if (currentGraph === "AttendanceRate") {
     case "EarningsPerMonth":
       addDjStatlist();
       drawDjsEarningsPerMonth();
+      break;
+    case "FullData":
+      addDjStatlist();
+      drawDJsFullData();
       break;
   }
 }

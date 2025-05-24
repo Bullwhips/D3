@@ -97,50 +97,7 @@ for (let year = 2015; year <= 2024; year++) {
      .style("color", "white");  
 }
 
-function chosenDj(event) {
-  console.log("hej");
-  const div = event.currentTarget;
-  const djID = parseInt(div.getAttribute("data-id"));
 
-  if (div.id == "allDjs") {
-    if (div.classList.contains("active")) {
-      div.classList.remove("active");
-      djDataset.forEach(dj => selectedDJs.delete(dj.id));
-      addDjStatlist(false);
-      d3.select("svg")
-        .selectAll("path.dj-line").remove();
-      return;
-    } else {
-      div.classList.add("active");
-      djDataset.forEach(dj => selectedDJs.add(dj.id));
-      addDjStatlist(true);     
-      drawAllDjs();
-      return;
-    }
-  }
-
-  if (selectedDJs.has(djID)) 
-  {
-      selectedDJs.delete(djID);
-      div.querySelector(".chosenDjBorder").style.borderBottom = "none";
-  } 
-
-  else 
-  {
-    selectedDJs.add(djID);
-
-    for (let djColor of djColorArray) 
-      {
-        if (djColor.id === djID) 
-      {
-          div.querySelector(".chosenDjBorder").style.borderBottom = `3px solid ${djColor.color}`;
-      }
-    }
-  }
-  // returnSelectedDjs();
-  addDjStatlist();
-  // drawVisibleDJs();
-}
 
 
 

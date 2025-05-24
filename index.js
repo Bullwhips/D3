@@ -30,6 +30,11 @@ switch (currentGraph) {
     break;
     case "EarningsPerMonth":
         renderGraphEarningsPerMonth(left);
+    break;
+  case "FullData":
+      renderFullDataGraph(left)
+  break;
+    
 }
 renderDjStats(right);
 renderGraphList(right);

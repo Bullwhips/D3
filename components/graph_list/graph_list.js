@@ -88,6 +88,18 @@ graphListEarningsPerMonth.addEventListener("click", () => {
     changeStatText(currentGraph);
     addDjStatlist();
 })
+
+graphListFullDataGraph.addEventListener("click", () => {
+    currentGraph = "FullData";
+    selectedDJs.clear();
+    djDataset = [];
+    clearAllDjBorders();
+    clearGraphSelectionColors();
+    graphListFullDataGraph.classList.add("selectedGraph");
+    renderFullDataGraph(left);
+    changeStatText(currentGraph);
+    addDjStatlist();
+})
 }
 
 
