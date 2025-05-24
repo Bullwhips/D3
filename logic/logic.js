@@ -194,6 +194,22 @@ function calculateAverageEarnings(dj, year) {
 }
 
 
+
+
+function calculateTotalAttendance(dj, year, graph) {
+  let totalAttendance = 0;
+  
+  switch (graph) {
+    case "AttendancePerMonth":
+      let djYearArray = dj.attendance[year];
+      djYearArray.forEach(n => totalAttendance = totalAttendance + n.totalAttendance);
+      return totalAttendance;
+    case "FullData":
+      return dj.data[year].totalAttendance;
+  }
+}
+
+
 function chosenDj(event) {
   const div = event.currentTarget;
   const djID = parseInt(div.getAttribute("data-id"));

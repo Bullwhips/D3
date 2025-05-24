@@ -60,7 +60,7 @@ function fullDataText() {
   Varje DJ representeras av en cirkel.<br>
   På X axlen visas besökande siffran och på Y axlen besöksfrekvensen i procent för hela året.<br>
   När det kommer till frågan "Vilken DJ har varit mest populär?" så ger den här grafen en helhets blik på frågan genom att visa datan från varjde graf.<br>
-  Den här grafen gör det helt enkelt lättare att gemföra alla DJs på alla kriterier. `
+  Den här grafen gör det helt enkelt lättare att jämföra alla DJs på alla kriterier. `
   textContainer.append(text)
 }
 function removeText() {

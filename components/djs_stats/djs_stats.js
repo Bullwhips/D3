@@ -31,6 +31,14 @@ function renderDjStats (container) {
         <p id="thirdStat"></p>
         <p id="thirdStatNumber"></p>
     </div>
+    <div class="stat">
+        <p id="fourthStat"></p>
+        <p id="fourthStatNumber"></p>
+    </div>
+    <div class="stat">
+        <p id="fifthStat"></p>
+        <p id="fifthStatNumber"></p>
+    </div>
     `
 
     container.appendChild(djStatsContainer);
@@ -84,6 +92,8 @@ function changeStatText(graph) {
     let firstStat = document.getElementById("firstStat");
     let secondStat = document.getElementById("secondStat");
     let thirdStat = document.getElementById("thirdStat");
+    let fourthStat = document.getElementById("fourthStat");
+    let fifthStat = document.getElementById("fifthStat");
 
     switch (graph) {
         case "AttendancePerMonth":
@@ -91,6 +101,8 @@ function changeStatText(graph) {
             firstStat.textContent = "Highest Attendance:";
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Attendance:";
+            fourthStat.textContent = "Total Attendance";
+            fifthStat.textContent = "Total Gigs";
             break;        
         case "AttendanceRate":
             firstStat.textContent = "Highest Average:";
@@ -101,6 +113,15 @@ function changeStatText(graph) {
             firstStat.textContent = "Highest Earnings:";
             secondStat.textContent = "Best Month:";
             thirdStat.textContent = "Avg Earnings";
+            fourthStat.textContent = "Total Earnings";
+            fifthStat.textContent = "Total Gigs";
+            break;
+        case "FullData":
+            firstStat.textContent = "Highest Attendance:";
+            secondStat.textContent = "Best Month:";
+            thirdStat.textContent = "Avg Attendance:";
+            fourthStat.textContent = "Total Attendance";
+            fifthStat.textContent = "Total Gigs";
             break;
         default:
             break;
@@ -111,12 +132,15 @@ function updateStatNumbers(graph) {
     let firstStatNumber = document.getElementById("firstStatNumber");
     let secondStatNumber = document.getElementById("secondStatNumber");
     let thirdStatNumber = document.getElementById("thirdStatNumber");
+    let fourtStatNumber = document.getElementById("fourthStatNumber");
+    let fifthStatNumber = document.getElementById("fifthStatNumber");
 
     switch (graph) {
         case "AttendancePerMonth":
             firstStatNumber.textContent = calculateHighestAttendance(currentDj, currentYear);
             secondStatNumber.textContent = calculateBestMonth(currentDj, currentYear);
             thirdStatNumber.textContent = calculateAverageAttendance(currentDj, currentYear);
+            fourtStatNumber.textContent = calculateTotalAttendance(currentDj, currentYear, currentGraph);
             break;       
         case "AttendanceRate":
             firstStatNumber.textContent = calculateHighestAverage(currentDj, currentYear) + "%";
@@ -127,6 +151,11 @@ function updateStatNumbers(graph) {
             firstStatNumber.textContent = calculateHighestEarnings(currentDj, currentYear) + " kr";
             secondStatNumber.textContent = calculateBestEarningsMonth(currentDj, currentYear);
             thirdStatNumber.textContent = calculateAverageEarnings(currentDj, currentYear) + " kr";
+            break;
+        case "FullData":
+
+
+            fourthStatNumber.textContent = calculateTotalAttendance(currentDj, currentYear, currentGraph);
             break;
     }
 }
