@@ -59,6 +59,7 @@ graphListAttendancePerMonth.addEventListener("click", () => {
     djDataset = []; 
     clearAllDjBorders();
     clearGraphSelectionColors(); 
+    clearActive();
     graphListAttendancePerMonth.classList.add("selectedGraph");
     renderAttendancePerMonthGraph(left)
     changeStatText(currentGraph);
@@ -71,6 +72,7 @@ graphListAttendanceRate.addEventListener("click", () => {
     djDataset = [];
     clearAllDjBorders();
     clearGraphSelectionColors(); 
+    clearActive();
     graphListAttendanceRate.classList.add("selectedGraph");
     renderAttendanceRateGraph(left)
     changeStatText(currentGraph);
@@ -83,6 +85,7 @@ graphListEarningsPerMonth.addEventListener("click", () => {
     djDataset = [];
     clearAllDjBorders();
     clearGraphSelectionColors();
+    clearActive();
     graphListEarningsPerMonth.classList.add("selectedGraph");
     renderGraphEarningsPerMonth(left);
     changeStatText(currentGraph);
@@ -100,6 +103,12 @@ graphListFullDataGraph.addEventListener("click", () => {
     changeStatText(currentGraph);
     addDjStatlist();
 })
+}
+
+function clearActive() {
+    if (document.getElementById("allDjs").classList.contains("active")) {
+        document.getElementById("allDjs").classList.remove("active");
+    }
 }
 
 
