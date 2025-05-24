@@ -133,6 +133,8 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
      .call(yAxisFunction)
      .attr("transform", `translate(${wPadding}, 0)`)
      .style("color", "white");  
+
+     fullDataText(wrapper)
 }
 
 
@@ -165,6 +167,7 @@ function drawDJsFullData()
        .attr("r", radius)
        .attr("id", `circle_${djID}_${currentYear}`)
        .attr("fill", getColorForDJ(djID))
+       .attr("fill-opacity", 0.8)
        .attr("stroke", "white")
        .attr("stroke-width", 1);
   }
@@ -188,6 +191,7 @@ function drawAllDjsFullData()
        .attr("r", d => d.data[currentYear].totalEarnings / 10000)
        .attr("id", (d) => `circle_${d.id}_${currentYear}`)
        .attr("fill", d => getColorForDJ(d.id))
+       .attr("fill-opacity", 0.8)
        .attr("stroke", "white")
        .attr("stroke-width", 1);
 }

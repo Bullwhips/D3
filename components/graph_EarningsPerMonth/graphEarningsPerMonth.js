@@ -80,6 +80,8 @@ function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
         .call(yAxisFunction)
         .attr("transform", `translate(${earningsPerMonthwPadding}, 0)`)
         .style("color", "white")
+
+    earningsPerMonthText(wrapper)
 } 
 
 function drawDjsEarningsPerMonth() {

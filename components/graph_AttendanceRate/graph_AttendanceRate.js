@@ -120,6 +120,8 @@ function renderAttendanceRateGraph(wrapper, selectedYear = 2015)
      .call(yAxisFunction)
      .attr("transform", `translate(${wPadding}, 0)`)
      .style("color", "white");  
+
+     attendanceRateText(left)
 }
 
 
