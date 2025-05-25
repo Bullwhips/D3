@@ -14,7 +14,7 @@
 #graphListHeader{
     font-family: "Beyonders";
     text-align: center;
-    font-size: 1vw;
+    font-size: 15px;
     color: white;
 }
 
@@ -23,7 +23,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 0.7vw;
+    font-size: 10px;
     gap: 15px;
 }
 
