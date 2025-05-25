@@ -57,6 +57,7 @@ function addDjStatlist(allDjs) {
     console.log(djs);
 
     if (allDjs) {
+        console.log(allDjs)
         djName.textContent = djs[0].name;
         djName.setAttribute("id", "0");
         djName.classList.add(`djId:${djs[0].id}`);
@@ -106,28 +107,28 @@ function changeStatText(graph) {
         case "AttendancePerMonth":
             firstStat.textContent = "Highest Attendance:";
             secondStat.textContent = "Best Month:";
-            thirdStat.textContent = "Avg Attendance:";
+            thirdStat.textContent = "Avg Attendance Gig:";
             fourthStat.textContent = "Total Attendance";
             fifthStat.textContent = "Total Gigs";
             break;        
         case "AttendanceRate":
             firstStat.textContent = "Highest Average:";
             secondStat.textContent = "Best Month:";
-            thirdStat.textContent = "Avg Attendance Rate:";
+            thirdStat.textContent = "Avg Yearly Rate:";
             fourthStat.textContent = "Total Gigs";
             break;
         case "EarningsPerMonth":
             firstStat.textContent = "Highest Earnings:";
             secondStat.textContent = "Best Month:";
-            thirdStat.textContent = "Avg Earnings";
+            thirdStat.textContent = "Avg Earnings Gig";
             fourthStat.textContent = "Total Earnings";
             fifthStat.textContent = "Total Gigs";
             break;
         case "FullData":
             firstStat.textContent = "Total Attendance";
             secondStat.textContent = "Total Earnings:";
-            thirdStat.textContent = "Avg Attendance:";
-            fourthStat.textContent = "Avg Earnings";
+            thirdStat.textContent = "Avg Attendance Gig:";
+            fourthStat.textContent = "Avg Earnings Gig";
             fifthStat.textContent = "Total Gigs";
             break;
         default:

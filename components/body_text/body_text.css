@@ -1,8 +1,19 @@
-#textContainer{
+#textContainer, #textContainer2025{
     margin-left: 20px;
     margin-top: 10px;
     font-family: 'Inter';
     color: white;
     font-size: 15px;
     line-height: 2;
+}
+
+#header2025{
+    font-family: Beyonders;
+    font-size: 15px;
+}
+
+.h2025{
+    color: #E52572;
+    font-family: Beyonders;
+    font-size: 12px;
 }

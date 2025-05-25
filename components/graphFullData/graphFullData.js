@@ -135,6 +135,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
      .style("color", "white");  
 
      fullDataText(wrapper)
+     hottest2025Text(wrapper)
 }
 
 
