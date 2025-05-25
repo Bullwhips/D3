@@ -80,6 +80,7 @@ function addDjStatlist(allDjs) {
             document.getElementById("fifthStatContainer").style.height = "100%";
         } else {
             document.getElementById("fifthStat").textContent = "";
+            document.getElementById("fifthStatNumber").textContent = "";
             document.getElementById("fifthStatContainer").style.height = 0;
         }
     } else if (djs.length === 1) {    
