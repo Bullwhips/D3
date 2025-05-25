@@ -1,6 +1,7 @@
 #bodyContainer {
     display: flex;
-    gap: 24px;
+    gap: 28px;
+
 }
 
 #left {
