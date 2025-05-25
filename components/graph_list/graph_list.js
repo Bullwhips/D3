@@ -62,6 +62,8 @@ graphListAttendancePerMonth.addEventListener("click", () => {
     clearActive();
     removeText()
     graphListAttendancePerMonth.classList.add("selectedGraph");
+    document.getElementById("allDjs").style.pointerEvents = "auto";
+    setPointerEventsAuto();
     renderAttendancePerMonthGraph(left)
     changeStatText(currentGraph);
     addDjStatlist();
@@ -76,6 +78,8 @@ graphListAttendanceRate.addEventListener("click", () => {
     clearActive();
     removeText()
     graphListAttendanceRate.classList.add("selectedGraph");
+    document.getElementById("allDjs").style.pointerEvents = "none";
+    setPointerEventsAuto();
     renderAttendanceRateGraph(left)
     changeStatText(currentGraph);
     addDjStatlist();
@@ -90,6 +94,8 @@ graphListEarningsPerMonth.addEventListener("click", () => {
     clearActive();
     removeText()
     graphListEarningsPerMonth.classList.add("selectedGraph");
+    document.getElementById("allDjs").style.pointerEvents = "auto";
+    setPointerEventsAuto();
     renderGraphEarningsPerMonth(left);
     changeStatText(currentGraph);
     addDjStatlist();
@@ -104,6 +110,8 @@ graphListFullDataGraph.addEventListener("click", () => {
     clearActive();
     removeText()
     graphListFullDataGraph.classList.add("selectedGraph");
+    document.getElementById("allDjs").style.pointerEvents = "auto";
+    setPointerEventsAuto();
     renderFullDataGraph(left);
     changeStatText(currentGraph);
     addDjStatlist();
@@ -114,6 +122,12 @@ function clearActive() {
     if (document.getElementById("allDjs").classList.contains("active")) {
         document.getElementById("allDjs").classList.remove("active");
     }
+}
+
+function setPointerEventsAuto() {
+    let djs = document.querySelectorAll("[data-id]");
+    djs.forEach(e => e.style.pointerEvents = "auto");
+
 }
 
 

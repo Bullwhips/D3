@@ -1,7 +1,7 @@
 #yearsContainer{
     display: flex;
     justify-content: center;
-    margin-top: 50px;
+    margin-top: 8px;
     color: white;
     font-family: "Beyonders";
     gap: 10px;
