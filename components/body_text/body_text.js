@@ -134,7 +134,7 @@ function hottest2025Text(left) {
   let text2025_4 = document.createElement("p")
   text2025_4.id = "text2025_4"
   text2025_4.innerHTML = `Gissa vem? DJ Thor igen! Han spelade totalt 110 gig 2024, vilken grinder! <br>
-                          Det är tydligt att alla gig vill boka DJ Thor, han drar många besökare och vi inte det ändras 2025.`
+                          Det är tydligt att alla gig vill boka DJ Thor, han drar många besökare och vi ser inte det ändras 2025.`
   textContainer2025.append(text2025_4)
 
   let h22025_5 = document.createElement("h2")
@@ -208,7 +208,7 @@ function hottest2025Text(left) {
   text2025_10.id = "text2025_10"
   text2025_10.innerHTML = `Om vi skulle förutspå bara 1 DJ för att vara mest populär 2025 så måste vi välja DJ Thor. <br>
                           Bästa månaden, högsta totala publiken, mest gigs, hösta totala inkomsten, alla dessa utmärkelser under 2024. <br>
-                          Han är verkligen "On Top of The World" just nu, och vi ser inte att han sakta ner inför 2025!`
+                          Han är verkligen "On Top of The World" just nu, och vi ser inte att han saktar ner inför 2025!`
   textContainer2025.append(text2025_10)
 
 
