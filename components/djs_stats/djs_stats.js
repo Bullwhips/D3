@@ -154,7 +154,7 @@ function updateStatNumbers(graph) {
         case "AttendanceRate":
             firstStatNumber.textContent = calculateHighestAverage(currentDj, currentYear) + "%";
             secondStatNumber.textContent = calculateBestMonthAttendanceRate(currentDj, currentYear);
-            thirdStatNumber.textContent  = calculateAverageByGigs(currentDj, currentYear, currentGraph) + "%";
+            thirdStatNumber.textContent  = calculateAverageByProcent(currentDj, currentYear, currentGraph) + "%";
             fourthStatNumber.textContent  = calculateTotalYearlyGigs(currentDj, currentYear, currentGraph);
             break;
         case "EarningsPerMonth":

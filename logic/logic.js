@@ -125,6 +125,18 @@ function calculateBestMonthAttendanceRate(dj, year) {
   return bestMonth;
 }
 
+function calculateAverageByProcent(dj, year, graph, type) {
+  let total = calculateTotal(dj, year, graph, type);
+  let months = 12
+
+    let average = total/months;
+  if (average > 0) {
+    return Math.round(average);
+  } else {
+    return 0;
+  }
+}
+
 
 
 
@@ -160,6 +172,7 @@ function calculateBestEarningsMonth(dj, year) {
 function calculateAverageByGigs(dj, year, graph, type) {
   let totalGigs = calculateTotalYearlyGigs(dj, year, graph);
   let total = calculateTotal(dj, year, graph, type);
+  console.log(total)
 
   let average = total/totalGigs;
   if (average > 0) {
@@ -168,6 +181,8 @@ function calculateAverageByGigs(dj, year, graph, type) {
     return 0;
   }
 }
+
+
 
 
 function calculateTotal(dj, year, graph, type) {
