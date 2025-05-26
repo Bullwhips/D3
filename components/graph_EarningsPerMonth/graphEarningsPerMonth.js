@@ -1,49 +1,47 @@
-function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
-    let old = document.getElementById("graphContainer");
+function renderGraphEarningsPerMonth(left, selectedYear = 2015) 
+{
+  let old = document.getElementById("graphContainer");
 
-    if (old) wrapper.removeChild(old);
+  if (old) left.removeChild(old);
 
-    let graphContainer = document.createElement("div");
-    graphContainer.id = "graphContainer";
-    wrapper.append(graphContainer);
+  let graphContainer = document.createElement("div");
+  graphContainer.id = "graphContainer";
+  left.append(graphContainer);
 
-    let svg = d3.select(graphContainer)
-                .append("svg")
-                .attr("width", wSvg)
-                .attr("height", hSvg)
-                .style("margin-top", "20px")
-                .style("margin-left", "20px")
-                .style("border-top", "10px solid #E52572")
-                .style("border-radius", "4px")
-                .style("background-color", "#110f34");
+  let svg = d3.select(graphContainer)
+              .append("svg")
+              .attr("width", wSvg)
+              .attr("height", hSvg)
+              .style("margin-top", "20px")
+              .style("margin-left", "20px")
+              .style("border-top", "10px solid #E52572")
+              .style("border-radius", "4px")
+              .style("background-color", "#110f34");
 
     let maxEarnings = 0;
     
     for (let dj of DJs) 
     {       
-        const djID = dj.id;
-        const dataset = 
-        {
-            id: djID,
-            name: dj.name,
-            earnings: {}
-
-        }
-
-        let djGigs = Gigs.filter(x => x.djID === djID);
+      const djID = dj.id;
+      const dataset = 
+      {
+        id: djID,
+        name: dj.name,
+        earnings: {}
+      }
         
-        for (let monthIndex = 0; monthIndex < 120; monthIndex++) 
-        {
-            const year = 2015 +  Math.floor(monthIndex / 12);
-            const month = monthIndex % 12;
+    for (let monthIndex = 0; monthIndex < 120; monthIndex++) 
+    {
+      const year = 2015 +  Math.floor(monthIndex / 12);
+      const month = monthIndex % 12;
 
-            let djGigs = Gigs.filter(x => x.djID === djID)
-                .filter(x => {
-                    let _date = new Date(x.date);
-                    let _year = _date.getFullYear();
-                    let _month = _date.getMonth();
-                    return _year === year && _month === month
-                });
+      let djGigs = Gigs.filter(x => x.djID === djID)
+          .filter(x => {
+            let _date = new Date(x.date);
+            let _year = _date.getFullYear();
+            let _month = _date.getMonth();
+            return _year === year && _month === month
+            });
             
             let totalEarnings = 0;
             for (let djGig of djGigs) {
@@ -60,8 +58,7 @@ function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
 
         djDataset.push(dataset);
     }
-    console.log(djDataset);
-    console.log(maxEarnings);
+    
 
     xScale = d3.scaleBand(months, [earningsPerMonthwPadding, earningsPerMonthwPadding + wViz])
                     .paddingInner(0.2)
@@ -81,7 +78,7 @@ function renderGraphEarningsPerMonth(wrapper, selectedYear = 2015) {
         .attr("transform", `translate(${earningsPerMonthwPadding}, 0)`)
         .style("color", "white")
 
-    earningsPerMonthText(wrapper)
+    earningsPerMonthText(left)
 } 
 
 function drawDjsEarningsPerMonth() {
@@ -100,7 +97,6 @@ function drawDjsEarningsPerMonth() {
         svg.append("path")
             .datum(yearData)
             .attr("class", "dj-line")
-            .attr("id", `line_${djID}_${currentYear}`)
             .attr("stroke", getColorForDJ(djID))
             .attr("stroke-width", 3)
             .attr("fill", "none")
@@ -121,7 +117,6 @@ function drawAllDjsEarningsPerMonth() {
                 .enter()
                 .append("path")
                 .attr("class", "dj-line")
-                .attr("id", (d) => `line_${d.id}_${currentYear}`)
                 .attr("stroke", (d) => getColorForDJ(d.id))
                 .attr("stroke-width", 3)
                 .attr("fill", "none")

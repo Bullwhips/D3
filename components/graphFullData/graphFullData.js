@@ -1,12 +1,12 @@
-
-function renderFullDataGraph(wrapper, selectedYear = 2015) {
+function renderFullDataGraph(left, selectedYear = 2015) 
+{
   let old = document.getElementById("graphContainer");
   
-  if (old) { wrapper.removeChild(old); }
+  if (old) { left.removeChild(old); }
   
   let graphContainer = document.createElement("div");
   graphContainer.id = "graphContainer";
-  wrapper.append(graphContainer);
+  left.append(graphContainer);
   
   let svg = d3.select(graphContainer)
               .append("svg")
@@ -82,7 +82,7 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
     djDataset.push(dataset); 
   }
 
-  console.log(djDataset);
+
   
 
   let maxAttendancePerCent = 0;
@@ -103,39 +103,50 @@ function renderFullDataGraph(wrapper, selectedYear = 2015) {
       }
     }
   }
-  console.log(maxAttendance);
-  console.log(maxEarnings);
-  console.log(maxAttendancePerCent);
 
+  for (let i = 0; i < djDataset.length; i++) { 
+  for (let year = 2015; year <= 2024; year++) {  
+    const statsByYear = djDataset[i].data[year];  
  
 
+    for (let j = 0; j < statsByYear.length; j++) {  
+      if (statsByYear[j].attendanceRatePerCent > maxAttendancePerCent) {
+        maxAttendancePerCent = statsByYear[j].attendanceRatePerCent;
+      }
 
+          if (statsByYear[j].totalAttendance > maxAttendance) {
+        maxAttendance = statsByYear[j].totalAttendance;
+      }
+    
 
+       if (statsByYear[j].totalEarnings > maxEarnings) {
+        maxEarnings = statsByYear[j].totalEarnings;
+      }
+    }
+  }
+}
 
-              
-  // x-Skala
+ 
   xScale = d3.scaleLinear([0, maxAttendance], [wPadding, wPadding + wViz]);
-          
-
-  // y-Skala
+        
   yScale = d3.scaleLinear([0, maxAttendancePerCent], [hPaddingBottom + hViz, hPaddingBottom]);
 
-  // Skapa x-axel i sitt eget <g>
+
   let xAxisFunction = d3.axisBottom(xScale);
   svg.append("g")
      .call(xAxisFunction)
      .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
      .style("color", "white");          
 
-  // Skapa y-axel i sitt eget <g>
+
   let yAxisFunction = d3.axisLeft(yScale);
   svg.append("g")
      .call(yAxisFunction)
      .attr("transform", `translate(${wPadding}, 0)`)
      .style("color", "white");  
 
-     fullDataText(wrapper)
-     hottest2025Text(wrapper)
+     fullDataText(left)
+     hottest2025Text(left)
 }
 
 
@@ -180,21 +191,19 @@ function drawAllDjsFullData()
   const svg = d3.select("#graphContainer").select("svg");
   svg.selectAll("circle.dj-circle").remove();
 
-
-
   svg.selectAll("circle.dj-circle")
      .data(djDataset)
      .enter()
      .append("circle")
-       .attr("class", "dj-circle")
-       .attr("cx", d => xScale(d.data[currentYear].totalAttendance))
-       .attr("cy", d => yScale(d.data[currentYear].attendanceRatePerCent))
-       .attr("r", d => d.data[currentYear].totalEarnings / 10000)
-       .attr("id", (d) => `circle_${d.id}_${currentYear}`)
-       .attr("fill", d => getColorForDJ(d.id))
-       .attr("fill-opacity", 0.8)
-       .attr("stroke", "white")
-       .attr("stroke-width", 1);
+     .attr("class", "dj-circle")
+     .attr("cx", d => xScale(d.data[currentYear].totalAttendance))
+     .attr("cy", d => yScale(d.data[currentYear].attendanceRatePerCent))
+     .attr("r", d => d.data[currentYear].totalEarnings / 10000)
+     .attr("id", (d) => `circle_${d.id}_${currentYear}`)
+     .attr("fill", d => getColorForDJ(d.id))
+     .attr("fill-opacity", 0.8)
+     .attr("stroke", "white")
+     .attr("stroke-width", 1);
 }
   
 

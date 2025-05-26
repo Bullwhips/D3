@@ -2,7 +2,6 @@
 function renderAttendancePerMonthGraph(left, selectedYear = 2015) 
 {
   let old = document.getElementById("graphContainer")
-  
   if (old) {left.removeChild(old)}
 
   let graphContainer = document.createElement("div")
@@ -56,40 +55,36 @@ function renderAttendancePerMonthGraph(left, selectedYear = 2015)
   
   }
 
+ 
 
 let maxAttendance = 0;
 
-for (let year = 2015; year <= 2024; year++) {
-  for (let i = 0; i < djDataset.length; i++) {
-    const statsByYear = djDataset[i].attendance[year];
+for (let i = 0; i < djDataset.length; i++) { 
+  for (let year = 2015; year <= 2024; year++) {  
+    const statsByYear = djDataset[i].attendance[year];  
    
-    
 
-    for (let j = 0; j < statsByYear.length; j++) {
+    for (let j = 0; j < statsByYear.length; j++) {  
       if (statsByYear[j].totalAttendance > maxAttendance) {
         maxAttendance = statsByYear[j].totalAttendance;
       }
     }
   }
 }
-
-              
-  // x-Skala
   xScale = d3.scaleBand(months, [wPadding, wPadding + wViz])
              .paddingInner(0.2)
              .paddingOuter(0.2)
 
-  // y-Skala
+
   yScale = d3.scaleLinear([0, maxAttendance], [hPaddingBottom + hViz, hPaddingBottom]);
 
-  // Skapa x-axel i sitt eget <g>
+
   let xAxisFunction = d3.axisBottom(xScale);
   svg.append("g")
      .call(xAxisFunction)
      .attr("transform", `translate(0, ${hPaddingBottom + hViz})`)
      .style("color", "white");          
 
-  // Skapa y-axel i sitt eget <g>
   let yAxisFunction = d3.axisLeft(yScale);
   svg.append("g")
      .call(yAxisFunction)
@@ -106,10 +101,10 @@ for (let year = 2015; year <= 2024; year++) {
 function drawDJsAttendancePerMonth() 
 {
   const svg = d3.select("#graphContainer").select("svg");
-  svg.selectAll("path.dj-line").remove(); // clear old lines
+  svg.selectAll("path.dj-line").remove();
 
   const dMaker = d3.line()
-    .x(d => xScale(months[d.month]) + xScale.bandwidth() / 2)
+    .x(d => xScale(months[d.month]) + xScale.bandwidth())
     .y(d => yScale(d.totalAttendance));
 
   for (let djID of selectedDJs) 
@@ -120,7 +115,6 @@ function drawDJsAttendancePerMonth()
     svg.append("path")
        .datum(yearData)
        .attr("class", "dj-line")
-       .attr("id", `line_${djID}_${currentYear}`)
        .attr("stroke", getColorForDJ(djID))
        .attr("stroke-width", 3)
        .attr("fill", "none")
@@ -134,7 +128,7 @@ function drawAllDjsAttendancePerMonth()
   svg.selectAll("path.dj-line").remove();
 
   const dMaker = d3.line()
-    .x(d => xScale(months[d.month]) + xScale.bandwidth() / 2)
+    .x(d => xScale(months[d.month]) + xScale.bandwidth())
     .y(d => yScale(d.totalAttendance));
 
   svg.selectAll("path.dj-line")
@@ -142,7 +136,6 @@ function drawAllDjsAttendancePerMonth()
      .enter()
      .append("path")
      .attr("class", "dj-line")
-     .attr("id", (d) => `line_${d.id}_${currentYear}`)
      .attr("stroke", (d) => getColorForDJ(d.id))
      .attr("stroke-width", 3)
      .attr("fill", "none")

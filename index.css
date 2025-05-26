@@ -25,13 +25,5 @@ font-face {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* height: 100%;
-    width: 100%; */
-  background: linear-gradient(
-    to bottom,
-    #120638 0%,
-    #120638 50%,
-    #33119E 100%
-    );
 
 }
