@@ -1,6 +1,6 @@
-function attendancePerMonthText(left) {
+function attendancePerMonthText(left) 
+{
   let textContainer = document.createElement("div")
-  textContainer.innerHTML = ""
   textContainer.id = "textContainer"
   left.append(textContainer)
 
@@ -14,7 +14,8 @@ function attendancePerMonthText(left) {
   textContainer.append(text)
 }
 
-function earningsPerMonthText(left) {
+function earningsPerMonthText(left) 
+{
   let textContainer = document.createElement("div")
   textContainer.id = "textContainer"
   left.append(textContainer)
@@ -31,50 +32,43 @@ function earningsPerMonthText(left) {
   textContainer.append(text)
 }
 
-function attendanceRateText(left) {
+function attendanceRateText(left) 
+{
   let textContainer = document.createElement("div")
-  textContainer.innerHTML = ""
+ 
   textContainer.id = "textContainer"
   left.append(textContainer)
-    
   let text = document.createElement("p")
   text.id = "text"
   text.innerHTML = `Den här grafen visar "Attendance Rate", alltså mängden besökare en Dj drog totalt för varje gig delat på stadens befolkning! <br>
-  Varje månad representeras av en stapel.<br>
-  På X axlen visas månaderna och på Y axlen besöksfrekvensen i procent.<br>
-  När det kommer till frågan "Vilken DJ har varit mest populär?" så ger besöksfrekvensen viktig kontext. <br>
-  DJ 1 kan ha samma mängd besökare som DJ 2. Men om besöksfrekvensen är högre tyder det på att DJ 1 drog en större del av befolkningen till sit gig och kanske till och med besökare utanför stadens befolkning.<br>
-  En DJ som har stor besöksfrekvensen i stora städer som små är verkligen populär! `
+                    Varje månad representeras av en stapel.<br>
+                    På X axlen visas månaderna och på Y axlen besöksfrekvensen i procent.<br>
+                    När det kommer till frågan "Vilken DJ har varit mest populär?" så ger besöksfrekvensen viktig kontext. <br>
+                    DJ 1 kan ha samma mängd besökare som DJ 2. Men om besöksfrekvensen är högre tyder det på att DJ 1 drog en större del av befolkningen till sit gig och kanske till och med besökare utanför stadens befolkning.<br>
+                    En DJ som har stor besöksfrekvensen i stora städer som små är verkligen populär! `
   textContainer.append(text)
 }
 
-function fullDataText(left) {
+function fullDataText(left) 
+{
   let textContainer = document.createElement("div")
-  textContainer.innerHTML = ""
   textContainer.id = "textContainer"
   left.append(textContainer)
     
   let text = document.createElement("p")
   text.id = "text"
   text.innerHTML = `Den här grafen visar "Full Data", altså all data sammlat ifrån alla grafer! <br>
-  Varje DJ representeras av en cirkel.<br>
-  På X axlen visas besökande siffran och på Y axlen besöksfrekvensen i procent för hela året.<br>
-  När det kommer till frågan "Vilken DJ har varit mest populär?" så ger den här grafen en helhets blik på frågan genom att visa datan från varjde graf.<br>
-  Den här grafen gör det helt enkelt lättare att jämföra alla DJs på alla kriterier. `
+                    Varje DJ representeras av en cirkel.<br>
+                    På X axlen visas besökande siffran och på Y axlen besöksfrekvensen i procent för hela året.<br>
+                    När det kommer till frågan "Vilken DJ har varit mest populär?" så ger den här grafen en helhets blik på frågan genom att visa datan från varjde graf.<br>
+                    Den här grafen gör det helt enkelt lättare att jämföra alla DJs på alla kriterier. `
   textContainer.append(text)
 }
-function removeText() {
-    let textContainer = document.querySelector("#textContainer")
-    textContainer.remove()
-    let textContainer2025 = document.querySelector("#textContainer2025")
-    if (textContainer2025) {
-      textContainer2025.remove()
-    }
-}
 
-function hottest2025Text(left) {
-    let textContainer2025 = document.createElement("div")
-  textContainer2025.innerHTML = ""
+
+function hottest2025Text(left) 
+{
+  let textContainer2025 = document.createElement("div")
   textContainer2025.id = "textContainer2025"
   left.append(textContainer2025)
 
@@ -86,7 +80,7 @@ function hottest2025Text(left) {
   let text2025_0 = document.createElement("p")
   text2025_0.id = "text2025_0"
   text2025_0.innerHTML = `Så vilken DJ tror vi kommer vara mest hetast under 2025? <br>
-                        Baserat på statestiken kommer vi att lyfta fram de Djs som imponerade under 2024 och som vi tror kommer gå starkt in i 2025`
+                          Baserat på statestiken kommer vi att lyfta fram de Djs som imponerade under 2024 och som vi tror kommer gå starkt in i 2025`
   textContainer2025.append(text2025_0)
 
   let h22025_1 = document.createElement("h2")
@@ -207,9 +201,19 @@ function hottest2025Text(left) {
   let text2025_10 = document.createElement("p")
   text2025_10.id = "text2025_10"
   text2025_10.innerHTML = `Om vi skulle förutspå bara 1 DJ för att vara mest populär 2025 så måste vi välja DJ Thor. <br>
-                          Bästa månaden, högsta totala publiken, mest gigs, hösta totala inkomsten, alla dessa utmärkelser under 2024. <br>
-                          Han är verkligen "On Top of The World" just nu, och vi ser inte att han saktar ner inför 2025!`
+                           Bästa månaden, högsta totala publiken, mest gigs, hösta totala inkomsten, alla dessa utmärkelser under 2024. <br>
+                           Han är verkligen "On Top of The World" just nu, och vi ser inte att han saktar ner inför 2025!`
   textContainer2025.append(text2025_10)
 
 
+}
+
+function removeText() 
+{
+    let textContainer = document.querySelector("#textContainer")
+    textContainer.remove()
+    let textContainer2025 = document.querySelector("#textContainer2025")
+    if (textContainer2025) {
+      textContainer2025.remove()
+    }
 }

@@ -1,8 +1,8 @@
-function renderYears(wrapper) {
+function renderYears(right) {
     
     let yearsContainer = document.createElement("div")
     yearsContainer.id = "yearsContainer"
-    wrapper.append(yearsContainer)
+    right.append(yearsContainer)
 
     let prevArrow = document.createElement("div")
     prevArrow.id = "prevArrow"
@@ -20,7 +20,7 @@ function renderYears(wrapper) {
     nextArrow.textContent = ">"
     yearsContainer.append(nextArrow)
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
     function updateYear() {
         yearDiv.textContent = years[currentIndex];
@@ -36,8 +36,4 @@ function renderYears(wrapper) {
         currentIndex = (currentIndex + 1) % years.length;
         updateYear();
     });
-
-    // Initial display
-    // updateYear();
-
 }

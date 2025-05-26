@@ -1,30 +1,15 @@
-const years = 
-[
-    "2015",
-    "2016",
-    "2017",
-    "2018",
-    "2019",
-    "2020",
-    "2021",
-    "2022",
-    "2023",
-    "2024",
-    
-]
 
-let selectedDJs = new Set(); // stores DJ ids
-let currentYear = 2015; // tracks the current year
-let djDataset = []; // global djDataset
-let xScale, yScale; // global x and y scale
+let selectedDJs = new Set(); 
+let currentYear = 2015; 
+let djDataset = []; 
+let xScale, yScale; 
 
 function updateGraph(year) {
   currentYear = year;
   if (currentDj) {
-    console.log(currentGraph)
     updateStatNumbers(currentGraph);
   }
-  // drawVisibleDJs();
+
   if (document.getElementById("allDjs").classList.contains("active")) {
  
     if (currentGraph === "AttendancePerMonth") {  
@@ -80,7 +65,7 @@ function calculateBestMonth(dj, year) {
   let bestMonthNumber = 0;
   let highestAttendance = 0;
 
-  console.log(dj);
+
   let allYearAttendance = dj.attendance[year];
   for (let yearAttendance of allYearAttendance) {
     if (yearAttendance.totalAttendance > highestAttendance) {
@@ -102,7 +87,6 @@ function calculateHighestAverage(dj, year) {
 
   let allYearAverage = dj.attendance[year];
   for (let avg of allYearAverage) {
-    console.log(avg);
     if (avg.attendanceRatePerCent > highestAverage) highestAverage = avg.attendanceRatePerCent;
   }
 
@@ -168,6 +152,8 @@ function calculateBestEarningsMonth(dj, year) {
   let bestMonth = months[bestMonthNumber];
   return bestMonth;
 }
+
+// Average function
 
 function calculateAverageByGigs(dj, year, graph, type) {
   let totalGigs = calculateTotalYearlyGigs(dj, year, graph);
@@ -260,10 +246,8 @@ function chosenDj(event) {
         nav.firstChild.firstElementChild.style.borderBottom = `3px solid ${getColorForDJ(id)}`;
         nav.style.pointerEvents = "none";
       }
-      console.log(navItems);
       addDjStatlist(true);
       if (currentGraph === "AttendancePerMonth") {
-        // console.log(currentGraph);
         drawAllDjsAttendancePerMonth();
       } else if (currentGraph === "EarningsPerMonth") {
         drawAllDjsEarningsPerMonth();
@@ -274,7 +258,7 @@ function chosenDj(event) {
     }
   }
 
-  // Clear previous selection styles from all DJs
+
 if (currentGraph === "AttendanceRate") {
   document.querySelectorAll(".chosenDjBorder").forEach(border => {
     border.style.borderBottom = "none";
@@ -283,12 +267,12 @@ if (currentGraph === "AttendanceRate") {
 
 
   if (currentGraph === "AttendanceRate") {
-    console.log("hej");
-    // SINGLE SELECTION MODE
+    
     selectedDJs.clear();
     selectedDJs.add(djID);
-  } else {
-    // MULTI-SELECTION MODE
+  } 
+  else 
+  {
     if (selectedDJs.has(djID)) {
       selectedDJs.delete(djID);
       if (selectedDJs.size > 0) {
