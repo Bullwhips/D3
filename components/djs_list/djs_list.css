@@ -27,6 +27,7 @@ nav div:hover {
 .chosenDjBorder {
     display: fit-content;
     height: 0px;
+    pointer-events: none;
 }
 nav div p {
     padding-right: 10px;
