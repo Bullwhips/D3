@@ -158,7 +158,7 @@ function calculateBestEarningsMonth(dj, year) {
 function calculateAverageByGigs(dj, year, graph, type) {
   let totalGigs = calculateTotalYearlyGigs(dj, year, graph);
   let total = calculateTotal(dj, year, graph, type);
-  console.log(total)
+
 
   let average = total/totalGigs;
   if (average > 0) {
@@ -212,7 +212,6 @@ function calculateTotalYearlyGigs(dj, year, graph) {
       return totalGigs;
     case "FullData":
       totalGigs = dj.data[year].gigs;
-      console.log("Full Data gigs ", totalGigs);
       return totalGigs;
   }
 }
